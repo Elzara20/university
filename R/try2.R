@@ -1,25 +1,25 @@
-sweet <- c(1,2,3, 4, 5, 6, 7,9, 10, 11, 12, 13)  
-crunch <- c(8,1,5, 9, 2, 6, 8, 4,10,3, 2, 6)
-name <- c("bacon", "cheese", "apple", "nuts", "fish","green bean", "cucumber", "pear", "carrot", "orange","banana", "grape")
-distance <- function(x,y, x1, y1){
-    return (sqrt((x-x1)^2+(y-y1)^2));
+Euclid <- function(u, v){
+    return(sqrt(sum((u - v)^2)))
 }
-for(i in 1:20){
-print(distance(iris[i, 3], iris[i,4], 1.5, 0.2))
-}
-print("\n")
-for(i in 1:20){
-    print(distance(iris[i, 3], iris[i,4], 4, 1.2))
-}
-print("\n")
-for(i in 1:20){
-       print(distance(iris[i, 3], iris[i,4], 6.1, 2.2))
+kNN <- function(xl, z, k){
+    l <- dim(xl)[1] #150 строк
+    n <- dim(xl)[2] - 1 # 3 столбца передаем
+    dist <-c(0)
 
+    for (i in 1:l){
+        dist[i] <- c(Euclid(xl[i, 1:n], z))
+    }
+
+    orderedXl <- xl[order(dist), ]
+    classes <- orderedXl[1:k, n + 1]
+    counts <- table(classes) # частота
+    class <- names(which.max(counts))
+    return (class)
 }
-print("\n")
-#plot (sweet, crunch)
-colors <- c("versicolor"="green", "setosa"="red", "virginica"="purple")
-plot(iris[,3:4], col=colors[iris$Species], pch=20)
-points(runif(3, 0.9, 7), runif(3, 0, 2.5), col=colors, bg=colors, pch=24)
-#points(4, 1.2, col="black",  pch=16, asp=1)
-#points(6.1, 2.2, col="black",  pch=16, asp=1)
+colors <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
+plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
+z <- c(runif(1, 0.9, 7), runif(1, 0, 2.5))
+xl <- iris[, 3:5]
+k <- readline(prompt = "k= ")
+class <- kNN(xl, z, k)
+points(z[1], z[2], pch = 24, bg = colors[class])
