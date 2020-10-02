@@ -10,14 +10,14 @@ OneNN <- function(xl, z){
         dist[i] <- c(Euclid(xl[i, 1:n], z))
     }
     # сортировка выборки по расстоянию
-    orderedXl <- xl[order(dist), ]
+    OrderedXl <- xl[order(dist), ]
     # определяем к какому классу принадлежит самый первый сосед
-    class <- orderedXl[1,n+1]  
+    class <- OrderedXl[1,n+1]  
     return (class)
 }
 colors <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
 plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
-z <- c(runif(1, 0.9, 7), runif(1, 0, 2.5))
+z <- c(runif(1, 1, 7), runif(1, 0.1, 2.5))
 xl <- iris[, 3:5]
 
 class <- OneNN(xl, z)
