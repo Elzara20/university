@@ -32,13 +32,9 @@ OneNN <- function(xl, z){
 ```
 
 Пример работы алгоритма показана на рисунках
-![][image1]
-![][image2]
-![][image3]
-
-[image1]: //1OneNN.jpg/250x100
-[image2]: //2OneNN.jpg/200x100
-[image3]: //3OneNN.jpg/150x100
+![](https://github.com/Elzara20/university/raw/master/1OneNN.jpg)
+![](https://github.com/Elzara20/university/raw/master/2OneNN.jpg)
+![](https://github.com/Elzara20/university/raw/master/3OneNN.jpg)
 
 ### Метод k ближайших соседей
 Модель алгоритма:
@@ -137,3 +133,6 @@ KwNN <- function(xl,z,k,q){
 }
 ```
 Для Ирисов Фишера подходящим q является .
+### Сравнение алгоритмов kNN и kwNN
+Рассмотрим пример. Пусть синие точки относятся к классу "0", а красные - "1". Алгоритм kNN классифицирует красную точку как класс "0", однако очевидно, что эта точка относится к классу "1" (алгоритм kwNN). 
+![](https://github.com/Elzara20/university/raw/master/example_dif.jpg)
