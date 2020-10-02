@@ -1,7 +1,7 @@
 Euclid <- function(u, v){
     return(sqrt(sum((u - v)^2)))
 }
-kNN <- function(xl, z, k){
+KNN <- function(xl, z, k){
     l <- dim(xl)[1]  # строки
     n <- dim(xl)[2] - 1 #  столбцы 
     dist <-c(0)
@@ -24,5 +24,5 @@ z <- c(runif(1, 0.9, 7), runif(1, 0, 2.5))
 xl <- iris[, 3:5]
 
 k <- readline(prompt = "k = ")
-class1 <- kNN(xl, z, k)
+class1 <- KNN(xl, z, k)
 points(z[1], z[2], pch = 24, bg = colors[class1])
