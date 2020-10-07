@@ -19,22 +19,44 @@ KwNN <- function(xl,z,k,q){
                 colors[c] <- colors[c]+q^i # взвешенная сумма для k ближайших соседей
             }           
         }     
-    }
-    
+    }    
     return(names(which.max(colors)))
    
+}
+Sorted <- function(xl, z){
+    l <- dim(xl)[1] # строки
+    n <- dim(xl)[2]-1 #  столбцы
+    dist <-c(0)
+
+    for (i in 1:l){
+        dist[i] <- c(Euclid(xl[i, 1:n], z[1:n]))
+    }
+    #сортировка выборки по расстоянию
+    OrderedXl <- xl[order(dist), ]
+    return(OrderedXl)
 }
 LOO <- function(a){
     len <- dim(a)[1]
     ans <- c()
     sum <- 0
-    for (j in 1:len){ # paccматриваем всех соседей
+    colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
+    for (j in 1:len){# рассматриваем  случайные данные из iris 
         sum <- 0
-        for (i in 1:len){  # рассматриваем  случайные данные из iris 
-            z <- a[i, 1:2] # координаты
-            cl <- KwNN(a[-i,], z,6, (j/len)) # применяем метод ближайших соседей
+        z <- a[j, 1:2] # координаты
+        qw <- Sorted(a[-j,1:3], z)
+
+        for (i in 1:len){  # paccматриваем всех соседей
+           
+            #cl <- KwNN(a[-j,], z,6, (i/len)) # применяем метод ближайших соседей
+            for (c in names(colors)){ # имена классов
+                for (l in 1:6){     # соседи                       
+                        colors[qw[l,3]] <- colors[qw[l,3]]+(i/len)^l # взвешенная сумма для k ближайших соседей
+                              
+                }     
+            }    
+    # return(names(which.max(colors)))
             # если классы не совпадают, то прибавляем  1      
-            if (a[i, 3] != cl){
+            if (a[j, 3] != names(which.max(colors))){
                 
                 sum <- sum + 1
             }   
@@ -42,24 +64,16 @@ LOO <- function(a){
     
         }       
         ans <- c(ans, sum/len)  #записываем вероятность появления ошибки при каждом k (число соседей)    
-        #jk <- j
+  
     }
-    #print(min(ans))
+    print(min(ans))
     for (j in 1:10){
         if (ans[j]==min(ans)){
             kj <- j
         }
     }
-    print(kj)
-    #print(ans)
-    plot(1:len,ans, type="l")
-    
+    print(kj)   
 }
 colors <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
-
-plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
-z <- iris[67,3:5]
-xl <- iris[-67, 3:5]
 a <- iris[,3:5]
 LOO(a)
-
