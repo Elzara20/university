@@ -179,6 +179,7 @@ RectK <- function(dist) {
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
 ![](https://github.com/Elzara20/university/raw/master/RectKernel.jpg)
+
 2. Треугольное ядро
 ```R
 TriangleK <- function(dist) {
@@ -189,6 +190,9 @@ TriangleK <- function(dist) {
   }
 }
 ```
+Подобранное h для треугольного ядра равна 0.4 с помощью LOO
+![](https://github.com/Elzara20/university/raw/master/TKernel.jpg)
+
 3. Квадратичное ядро
 ```R
 SquareK <- function(dist) {
@@ -201,6 +205,7 @@ SquareK <- function(dist) {
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
 ![](https://github.com/Elzara20/university/raw/master/SquareKernel.jpg)
+
 4. Ядро Епанечникова
 ```R
 EpanechnikovK <- function(dist) {
@@ -211,6 +216,10 @@ EpanechnikovK <- function(dist) {
   }
 }
 ```
+Подобранное h для ядра Епанечникова равна 0.4 с помощью LOO
+![](https://github.com/Elzara20/university/raw/master/EKernel.jpg)
+
+
 5. Гауссовское ядро
 ```R
 GaussK <- function(dist) {
@@ -218,5 +227,7 @@ GaussK <- function(dist) {
 }
 ```
 
+Подобранное h для ядра ауссовского равна 0.1 с помощью LOO
+![](https://github.com/Elzara20/university/raw/master/GKernel.jpg)
 
 
