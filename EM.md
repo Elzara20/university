@@ -3,7 +3,7 @@
 
 В тех случаях, когда «форму» класса не удаётся описать каким-либо одним распределением, можно попробовать описать её смесью распределений.
 
-![equation](CodeCogsEqn.gif)
+<center> ![equation](CodeCogsEqn.gif) <\center>
 
 где ![](https://latex.codecogs.com/gif.latex?p_j(x)) — функция правдоподобия ![](https://latex.codecogs.com/gif.latex?j)-ой компоненты смеси, ![](https://latex.codecogs.com/gif.latex?w_j) — её априорная вероятность.
 
