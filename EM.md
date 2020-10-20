@@ -1,3 +1,4 @@
+<!-- center code math uml theme:white -->
 #  Разделение смеси распределений
 
 
