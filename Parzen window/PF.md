@@ -6,7 +6,9 @@
 4. Проходим по всех объектам выборки
 
  4.1 Определяем вес с помощью функции ядра K
-![](https://github.com/Elzara20/university/tree/master/Parzen%20window/parzen_h.jpg)
+ 
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/parzen_h.jpg)
+
 где значение функции K определяется как расстояние от заданного z до всех объектов выборки деленное на ширину окна
 
  4.2 Находим взвешанную сумму 
