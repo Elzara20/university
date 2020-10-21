@@ -6,7 +6,7 @@
 4. Проходим по всех объектам выборки
 
  4.1 Определяем вес с помощью функции ядра K
-![](https://github.com/Elzara20/university/raw/master/parzen_h.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/parzen_h.jpg)
 где значение функции K определяется как расстояние от заданного z до всех объектов выборки деленное на ширину окна
 
  4.2 Находим взвешанную сумму 
@@ -41,7 +41,7 @@ RectK <- function(dist) {
 }
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/RectKernel.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/RectKernel.jpg)
 
 2. Треугольное ядро
 ```R
@@ -54,7 +54,7 @@ TriangleK <- function(dist) {
 }
 ```
 Подобранное h для треугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/TKernel.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/TKernel.jpg)
 
 3. Квадратичное ядро
 ```R
@@ -67,7 +67,7 @@ SquareK <- function(dist) {
 }
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/SquareKernel.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/SquareKernel.jpg)
 
 4. Ядро Епанечникова
 ```R
@@ -80,7 +80,7 @@ EpanechnikovK <- function(dist) {
 }
 ```
 Подобранное h для ядра Епанечникова равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/EKernel.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/EKernel.jpg)
 
 
 5. Гауссовское ядро
@@ -91,4 +91,4 @@ GaussK <- function(dist) {
 ```
 
 Подобранное h для ядра ауссовского равна 0.1 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/GKernel.jpg)
+![](https://github.com/Elzara20/university/Parzen window/raw/master/GKernel.jpg)
