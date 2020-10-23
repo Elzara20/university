@@ -44,6 +44,8 @@ RectK <- function(dist) {
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
 ![](https://github.com/Elzara20/university/blob/master/Parzen%20window/RectKernel.jpg)
+Карта классификации 
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_Rect.jpg)
 
 2. Треугольное ядро
 ```R
@@ -70,6 +72,8 @@ SquareK <- function(dist) {
 ```
 Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
 ![](https://github.com/Elzara20/university/blob/master/Parzen%20window/SquareKernel.jpg)
+Карта классификации 
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_Square.jpg)
 
 4. Ядро Епанечникова
 ```R
@@ -83,6 +87,8 @@ EpanechnikovK <- function(dist) {
 ```
 Подобранное h для ядра Епанечникова равна 0.4 с помощью LOO
 ![](https://github.com/Elzara20/university/blob/master/Parzen%20window/EKernel.jpg)
+Карта классификации 
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_Ep.jpg)
 
 
 5. Гауссовское ядро
@@ -93,7 +99,9 @@ GaussK <- function(dist) {
 ```
 
 Подобранное h для ядра Гауссовского равна 0.1 с помощью LOO
-![](https://github.com/Elzara20/university/blob/master/Parzen%20window/GKernel.jpg)
+Карта классификации 
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_Rect.jpg)
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_g.jpg)
 ### Главные различия алгоритма
 - Преимуществом парзеновского окна от алгоритма ближайших соседей является задание определенной величины области исследования. Подробно рассмотрено на рисунке
 ![](https://github.com/Elzara20/university/blob/master/Parzen%20window/example.jpg)
