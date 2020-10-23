@@ -104,7 +104,7 @@ GaussK <- function(dist) {
 Подобранное h для ядра Гауссовского равна 0.1 с помощью LOO
 Карта классификации 
 
-![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_g.jpg)
+![](https://github.com/Elzara20/university/blob/master/Parzen%20window/Parzen_g.png)
 
 ### Главные различия алгоритма
 - Преимуществом парзеновского окна от алгоритма ближайших соседей является задание определенной величины области исследования. Подробно рассмотрено на рисунке
