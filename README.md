@@ -142,101 +142,6 @@ KwNN <- function(xl,z,k,q){
 ### Сравнение алгоритмов kNN и kwNN
 Рассмотрим пример. Пусть синие точки относятся к классу "0", а красные - "1". Алгоритм kNN классифицирует красную точку как класс "0", однако очевидно, что эта точка относится к классу "1" (алгоритм kwNN). 
 ![](https://github.com/Elzara20/university/raw/master/example_dif.jpg)
-### Парзеновское окно
-Модель алгоритма:
-1. Дана обучающая выборка xl, случайно выбранная точка z, ширина окна h.
-2. Вычисляем расстояние от z до каждого объекта из выбоки xl
-3. Сортируем расстояния от минимума к максимуму
-4. Проходим по всех объектам выборки
-
- 4.1 Определяем вес с помощью функции ядра K
-![](https://github.com/Elzara20/university/raw/master/parzen_h.jpg)
-где значение функции K определяется как расстояние от заданного z до всех объектов выборки деленное на ширину окна
-
- 4.2 Находим взвешанную сумму 
- 
-5. Ответом является максимальное значение взвешанной суммы
-```R
-Parzen <- function(xl, z, h){
-    len <- dim(xl)[1]
-    n <- dim(xl)[2]
-    w <- c()
-    colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
-    qw <- Sorted(xl[,1:3], z)
-
-    for (i in 1:len){ 
-      r<-qw[i,2]/h
-      colors[qw[i,3]] <- colors[qw[i,3]]+RectK(r) 
-    }   
-    return(names(which.max(colors)))
-}
-```
-Ширина окна h влияет на качество плотности. При h, близкое к нулю, плотность определяется вблизи обучающих объектов, а при h, близкое к бесконечности, плотность сглаживается и вырождается в константу.
-Функция ядра K не влияет на качество плотности, но влияет на степень гладкости при вычислении парзеновского окна и эффективность вычислений.
-Используемые ядра:
-1. Прямоугольное ядро
-```R
-RectK <- function(dist) {
-  if (abs(dist) <= 1) {
-    return (0.5)
-  } else {
-    return (0)
-  }
-}
-```
-Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/RectKernel.jpg)
-
-2. Треугольное ядро
-```R
-TriangleK <- function(dist) {
-  if (abs(dist) <= 1) {
-    return (1-abs(dist))
-  } else {
-    return (0)
-  }
-}
-```
-Подобранное h для треугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/TKernel.jpg)
-
-3. Квадратичное ядро
-```R
-SquareK <- function(dist) {
-  if (abs(dist) <= 1) {
-    return ((15/16)*(1-dist^2)^2)
-  } else {
-    return (0)
-  }
-}
-```
-Подобранное h для прямоугольного ядра равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/SquareKernel.jpg)
-
-4. Ядро Епанечникова
-```R
-EpanechnikovK <- function(dist) {
-  if (abs(dist) <= 1) {
-    return ((3/4)*(1-dist^2))
-  } else {
-    return (0)
-  }
-}
-```
-Подобранное h для ядра Епанечникова равна 0.4 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/EKernel.jpg)
-
-
-5. Гауссовское ядро
-```R
-GaussK <- function(dist) {
-  return ((2*pi)^(-0.5)*exp(-0.5*(dist^2)))
-}
-```
-
-Подобранное h для ядра ауссовского равна 0.1 с помощью LOO
-![](https://github.com/Elzara20/university/raw/master/GKernel.jpg)
-
 
 ### Потенциальные функции
 Модель алгоритма:
@@ -268,29 +173,45 @@ Potetial <- function(xl, z, h,p){
 Потенциал или мера воздействия проверяет на близость объекта к обучающей выборке. От него зависит определение принадлежности к классу.
 Алгорит нахождения потенциалов:
 ```R
-    len <- dim(a)[1]   
+    LOO <- function(a){
+    colo <- c("setosa" = "coral1", "versicolor" = "chartreuse", "virginica" = "deepskyblue")
+    len <- dim(a)[1]
+    n <- dim(a)[2]
+    ANS <- c()
+    K<-0
     eps<-10
     err<-eps+0.1
     h<-0.4 #оптимальное значение
-   
+    
+    h_seq <- seq(0.1, 2, 0.1)
+    for (i in 1:length(h_seq)){
+        ANS[i]<-0
+    }
     p<-c()
     for (i in 1:len){
-        p[i]<-1
+        p[i]<-0
     }
+    qw<- matrix(0, len, len)
     qw <- Sorted(a)
-    while (err>eps && err<12){
+    while (err>eps && err<11){ 
+        
         for (j in 1:len){ 
             colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
-            for (i in 1:(len-1)){
+            for (i in 1:len){
                 r<-qw[j,i]/h
                 colors[a[i,3]] <- colors[a[i,3]]+p[i]*RectK(r) # взвешенная сумма   
-                
-            if (a[j, 3] != names(which.max(colors)) ){  
-                p[i] <- p[i]+1             
             }
-            }             
+                if (a[j, 3] != names(which.max(colors)) ){  
+                    p[j] <- p[j]+1          
+                                            
+                }
+            
         }
-        for (j in 1:len){ # paccматриваем случайные данные из iris       
+                
+            
+                    
+        
+        for (j in 1:len){      
             colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
             for (i in 1:(len-1)){                
                 r<-qw[j,i]/h
@@ -301,10 +222,14 @@ Potetial <- function(xl, z, h,p){
                 err<-err+1                                
             }
         }
+        
             
- 
-    }
-    return(p)  
-    
+     }
+    return(p)
 }
+
 ```
+
+Карта классификации для прямоугольного ядра:
+
+![](https://github.com/Elzara20/university/raw/master/Potential_rect.jpg)
