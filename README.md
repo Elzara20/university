@@ -32,9 +32,9 @@ OneNN <- function(xl, z){
 ```
 
 Пример работы алгоритма показана на рисунках
-![](https://github.com/Elzara20/university/tree/master/pictures/1OneNN.jpg)
-![](https://github.com/Elzara20/university/tree/master/pictures/2OneNN.jpg)
-![](https://github.com/Elzara20/university/tree/master/pictures/3OneNN.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/1OneNN.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/2OneNN.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/3OneNN.jpg)
 
 ### Метод k ближайших соседей
 Модель алгоритма:
@@ -99,14 +99,14 @@ LOO <- function(a){
     K <- which.min(ANS)   
     }
 ```
-![](https://github.com/Elzara20/university/tree/master/pictures/LOO.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/LOO.jpg)
 Для Ирисов Фишера подходящим k является 6.
 
-![](https://github.com/Elzara20/university/tree/master/pictures/map_KNN.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/map_KNN.jpg)
 
 Значение LOO:
 
-![](https://github.com/Elzara20/university/tree/master/pictures/LOO_knn.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/LOO_knn.jpg)
 
 Однако недостатком метода ближайших k соседей является то, что правильная классификация объекта (распознавание) может достигаться на нескольких классах. Например, при четном числе соседей, наиболее встречающихся классов может быть поровну. Более подходящий вариант для многих классах - это ввести строго убывающую последовательность вещественных весов.
 ### Метод k взвешенных ближайших соседей
@@ -142,16 +142,16 @@ KwNN <- function(xl,z,k,q){
 ```
 Для Ирисов Фишера подходящим q по LOO является 1.
 
-![](https://github.com/Elzara20/university/tree/master/pictures/map_KwNN.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/map_KwNN.jpg)
 
 Значение LOO:
 
-![](https://github.com/Elzara20/university/tree/master/pictures/kwNN_LOO.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/kwNN_LOO.jpg)
 
 ### Сравнение алгоритмов kNN и kwNN
 Рассмотрим пример. Пусть синие точки относятся к классу "0", а красные - "1". Алгоритм kNN классифицирует красную точку как класс "0", однако очевидно, что эта точка относится к классу "1" (алгоритм kwNN). 
 
-![](https://github.com/Elzara20/university/tree/master/pictures/example_dif.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/example_dif.jpg)
 
 ### Потенциальные функции
 Модель алгоритма:
@@ -159,7 +159,7 @@ KwNN <- function(xl,z,k,q){
 2. Вычисляем расстояние от z до каждого объекта из выбоки xl
 3. Проходим по всех объектам выборки
  4.1 Определяем вес с помощью функции ядра K
-![](https://github.com/Elzara20/university/tree/master/pictures/parzen_h.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/parzen_h.jpg)
 где значение функции K определяется как расстояние от заданного z до всех объектов выборки деленное на ширину окна
  4.2 Находим взвешанную сумму, где значение ядра умножается на значение потенциала
 5. Ответом является максимальное значение взвешанной суммы
@@ -242,4 +242,4 @@ Potetial <- function(xl, z, h,p){
 
 Карта классификации для прямоугольного ядра:
 
-![](https://github.com/Elzara20/university/tree/master/pictures/Potential_rect.jpg)
+![](https://github.com/Elzara20/university/blob/master/pictures/Potential_rect.jpg)
