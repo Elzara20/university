@@ -5,7 +5,9 @@
 ![](https://latex.codecogs.com/gif.latex?M(x_i)=W_{y_i}(x_i,X^l)-\max_{y&space;\in&space;Y&space;/\{y_i\}}W_y(x_i,X^l).)
 
 Объяснение на примере
-![](https://latex.codecogs.com/gif.latex?M(x_i)=W_{y_i}(x_i,X^l)-\max_{y&space;\in&space;Y&space;/\{y_i\}}W_y\{x_i,X^l\}.)
+
+![](https://github.com/Elzara20/university/blob/master/pictures/exampleForSTOLP.jpg)
+
 Дана выборка из двух классов, значение х принадлежит классу "+". Рассмотрим классификацию 3NN. Правильно классифицируется 1 объект, а остальные 2 неправильно, тогда отступ равен: ![](https://latex.codecogs.com/gif.latex?M(x_i)=1-2=-1).
 В зависимости от значений отступа объекты условно делятся на пять типов:
  -  **Эталонные** объекты имеют большой положительный отступ
@@ -75,5 +77,8 @@ while (dim(Standart)[1]!=len){
     Standart<-rbind(Standart,z)
 }
 ```
-![](https://latex.codecogs.com/gif.latex?M(x_i)=1-2=-1).
-![](https://latex.codecogs.com/gif.latex?M(x_i)=1-2=-1).
+
+![](https://latex.codecogs.com/gif.latex?M(x_i)=1-2=-1)
+
+
+![](https://github.com/Elzara20/university/blob/master/pictures/STOLP.jpeg)
