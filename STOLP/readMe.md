@@ -78,7 +78,7 @@ while (dim(Standart)[1]!=len){
 }
 ```
 
-![](https://latex.codecogs.com/gif.latex?M(x_i)=1-2=-1)
+![](https://github.com/Elzara20/university/blob/master/pictures/margin_by_kwnn.jpg)
 
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/STOLP.jpeg)
