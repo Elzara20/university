@@ -76,7 +76,7 @@ LOO <- function(a){
    
     qw <- Sorted(a)
     #print(qw)
-    while (err<30){ #!! нужно ограничение для err
+    while (err<10){ #!! нужно ограничение для err
       
         for (j in 1:len){ # paccматриваем случайные данные из iris            
             # for (k in 1:len){        
@@ -90,24 +90,25 @@ LOO <- function(a){
                 print(names(which.max(colors)))
                 print(a[j, 3])
                 p[j] <- p[j]+1 
+                err<-err+1
                 # break                
                                             
             }
            # }
         }
-        for (j in 1:len){ # paccматриваем случайные данные из iris
-            # for (k in 1:len){
-            colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
-            for (i in 1:len){
-                r<-qw[j,i]/h             
-                colors[a[j,3]] <- colors[a[j,3]]+p[i]*EpanechnikovK(r) # взвешенная сумма                 
-            }
-            if (a[j, 3] != names(which.max(colors))){  
-                err<-err+1               
+        # for (j in 1:len){ # paccматриваем случайные данные из iris
+        #     # for (k in 1:len){
+        #     colors <- c("setosa" = 0, "versicolor" = 0, "virginica" = 0)
+        #     for (i in 1:len){
+        #         r<-qw[j,i]/h             
+        #         colors[a[j,3]] <- colors[a[j,3]]+p[i]*EpanechnikovK(r) # взвешенная сумма                 
+        #     }
+        #     if (a[j, 3] != names(which.max(colors))){  
+        #         err<-err+1               
                                             
-            }
+        #     }
           
-        }
+        # }
         
             
              
@@ -154,4 +155,3 @@ LOO <- function(a){
 
 a <- iris[, 3:5]
 LOO(a)
-
