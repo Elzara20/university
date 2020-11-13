@@ -87,3 +87,8 @@ while (dim(Standart)[1]!=len){
 
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/STOLP.jpeg)
+
+Сравнение с другими алгоритмами:
+
+
+![](https://github.com/Elzara20/university/blob/master/pictures/comparison_metric.jpeg)
