@@ -73,9 +73,28 @@
  
  ```
  Результат
+ Cфера - определитель ковариационной матрицы равен 1, а коэффициент корреляции r=0
+ 
+ 
+ ![](https://github.com/Elzara20/university/blob/master/Distriburion%20lines/sphere.jpeg)
+ 
+ 
+ Наклоненный эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r!=0
+ 
+ 
+ ![](https://github.com/Elzara20/university/blob/master/Distriburion%20lines/tiltedel.jpeg)
+ 
+ 
+ Эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r=0
+ 
+ 
+ ![](https://github.com/Elzara20/university/blob/master/Distriburion%20lines/el.jpeg)
  
  Использованная литература
+ 
+ 
 [1 источник](https://www.keldysh.ru/kur/akp.pdf)
+
 
 [2 источник](https://ru.wikipedia.org/wiki/%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D0%BC%D0%B5%D1%80%D0%BD%D0%BE%D0%B5_%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)
 
