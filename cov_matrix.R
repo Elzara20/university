@@ -1,9 +1,7 @@
 library(ggplot2)
-library(viridis)
-library(wesanderson)
 NormalDistribution<- function(A){
-    # dem(A) определитель
-    # solve(A) обратная матрица
+    # dem(A) РѕРїСЂРµРґРµР»РёС‚РµР»СЊ
+    # solve(A) РѕР±СЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р°
     x <- seq(-10, 10, by = 0.1)
     y <- seq(-10, 10, by = 0.1)
     z<-c()
@@ -14,54 +12,40 @@ NormalDistribution<- function(A){
     for (i in 1:length(x)){
         z[i]<- (1/(2*pi*sqrt(det(A))))*exp(-1/2*(x[i]^2+y[i]^2))
     }
-    #print(z)
+    print(z)
     ans<-data.frame(x, y, z)
-    #print(ans)
-    #ggplot(data=ans,aes(x=x, y=y, z=z))
-    x <- y <- seq(-10, 10, by = 0.1)
-    sx<-A[1,1]
-    sy<-A[2,2]
-    sxy<-A[1,2]
-    r<-sxy/(sx*sy)
-    print(r)
-    if (r!=0){
-    grid <- outer(
-        x,
-        y,
-        function(x, y) {
-            (1/(2*pi*sqrt(det(A))))*exp(-1/2*(x^2/(sx*(1-r^2))-(2*r*x*y)/(sxy*(1-r^2))+y^2/(sx*(1-r^2))))
-        }
-    );
-    
-    filled.contour(grid, axes = FALSE, col=viridis(10),asp=1);
-    }else{
-    
-            grid <- outer(
-                x,
-                y,
-                function(x, y) {
-                    (1/(2*pi*sqrt(det(A))))*exp(-1/2*(x^2/sx+y^2/sy))
-                }
-            );
-            
-            filled.contour(grid, axes = FALSE, col=viridis(10),asp=1);
-        
-    }
-    
-    
-    #filled.contour(x, y, z)
-    # geom_point()+stat_ellipse()
-    #ggplot(data = ans)
-    #plot(ans)
-    # wireframe(z~x*y, data=ans, aspect=c(1, .5), shade=TRUE)
-    
-}
-# сфера - определитель ковариационной матрицы равен 1, а коэффициент корреляции r=0
-A<-matrix(c(1,0,0,1),2,2)
-# наклоненный эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r!=0
-A1<-matrix(c(4,1,1,2),2,2)
-# наклоненный эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r=0
-A2<-matrix(c(1,0,0,4),2,2)
-A3<-matrix(c(8,-2,-2,3),2,2)
-NormalDistribution(A3)
+    print(ans)
+    # print(length(x))
+    # print("ans")
+    # print(ans)
+   
+    # filled.contour(x,y,ans, nlevels=20, asp=0, plot.axs={
+    #     axis(1)
+    #     axis(2)
+    #     contour(x,y,z,add=TRUE)
+    #   })
+    # return(ans)   
+#     filled.contour(x = seq(0, 1, length.out = nrow(ans)),
+#                y = seq(0, 1, length.out = ncol(ans)),
+#                ans,
+#                xlim = range(x, finite = TRUE),
+#                ylim = range(y, finite = TRUE),
+#                zlim = range(ans, finite = TRUE),
+#                levels = pretty(zlim, nlevels), nlevels = 20,
+#                color.palette = function(n) hcl.colors(n, "YlOrRd", rev = TRUE),
+#                col = color.palette(length(levels) - 1),
+#                plot.title, plot.axes, key.title, key.axes,
+#                asp = NA, xaxs = "i", yaxs = "i", las = 1,
+#                axes = TRUE, frame.plot = axes) 
 
+
+
+ggplot(ans, aes(x=x, y=y,z=z, colour="red"))+
+geom_point()
+#ggplot(data = ans)
+#plot(ans)
+
+}
+A<-matrix(c(1,0,0,1),2,2)
+
+NormalDistribution(A)
