@@ -81,7 +81,7 @@ ggplot(data,aes(x, y, color=class)) +
 ```
 
 
-![](https://latex.codecogs.com/gif.latex?!!!!!!!!!!!!!!!!!!!!!!!!)
+![](https://github.com/Elzara20/university/blob/master/pictures/svm.jpeg)
 
 ## Ядро
 
@@ -134,7 +134,7 @@ for (i in 2:dim(orderedXl)[1]){
 ```
 
 
-[](https://latex.codecogs.com/gif.latex?!!!!!!!!!!!!!!!!!!!!!!!)
+![](https://github.com/Elzara20/university/blob/master/pictures/ROC.jpeg)
 
 
 
