@@ -2,105 +2,95 @@ library(ggplot2)
 library(viridis)
 library(wesanderson)
 library(MASS)
-
-E<- function(A){
-  return (mean(A))
-}
-Cov<- function(A, m1, m2){
+#ìàòîæèäàíèå
+E<- function(A){#n-êîëè÷åñòâî ïðèçíàêîâ (x è ó â äàííîì ñëó÷àå)
+  n<-dim(A)[2]
   ans<-c()
-  for (i in 1:(dim(A)[1])){
-    ans[i]<-(A[i,1]-m1)*(A[i,2]-m2)
+  for (i in 1:n){
+    ans[i]<-mean(A[,i]) #ðàâíîìåðíîå ðàñïðåäåëåíèå
   }
   
-  
-  return(sum(ans, na.rm=TRUE))
+  return (ans) 
 }
-Density<- function(A, m1,m2, d1,d2, d12,r){
- 
-  
-  
-  
-  ans<-(1/(2*pi*d12*sqrt(1-r^2))*exp(-1/2*((A[1]-m1)^2/(d1*(1-r^2))-(2*r*(A[1]-m1)*(A[2]-m2))/(d12*(1-r^2))+(A[2]-m2)^2/(d2*(1-r^2)))))
-  
-  print('ans')
-  print(ans)
-  #print("+++++++++++++++++++++++++++++++++++")
-  return(ans)
-}
-Expectation<- function(A, u, n1,n2){
-  N<-n1+n2 #Ð²ÑÐµÐ³Ð¾ Ñ‚Ð¾Ñ‡ÐµÐº
-  mu1 <- c(5,6)
-  mu2 <- c(-5,-6)
-  Sigma1 <- matrix(c(15,1,1,15),2)
-  Sigma2 <- matrix(c(51,9,9,54),2)
-  bivn1 <- mvrnorm(n1, mu = mu1, Sigma = Sigma1 )    #Ð¼Ð½Ð¾Ð³Ð¾Ð¼ÐµÑ€Ð½Ð¾Ðµ Ñ€Ð°ÑÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ñ‚Ð¾Ñ‡ÐµÐº ÐºÐ»Ð°ÑÑÐ¾Ð²
-  bivn2 <- mvrnorm(n2, mu = mu2, Sigma = Sigma2 )
-  #print(xl1)
-  plot(bivn1, col="red",asp=1)
-  points(bivn2, col="green",asp=1)
-  #print("______________________________________")
-  m1<-E(bivn1[,1]) #Ð¼Ð°Ñ‚Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ Ñ…
-  m2<-E(bivn1[,2]) #Ð¼Ð°Ñ‚Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ y
-  m1_2<-E(bivn2[,1]) #Ð¼Ð°Ñ‚Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ Ñ…
-  m2_2<-E(bivn2[,2]) #Ð¼Ð°Ñ‚Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ðµ y
-  #print("m1, m2")
-  #print(m1)
-  #print(m2)
-  d_1<-c()
-  d_2<-c()
-  
-  for (i in 1:(dim(bivn1)[1])){
-    d_1[i]<-(bivn1[i,1]-m1)^2 # Ð´Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ Ñ…
-    d_2[i]<-(bivn1[i,2]-m2)^2 # Ð´Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ Ñƒ
-  }
-  d_12<-c()
-  d_22<-c()
-  
-  for (i in 1:(dim(bivn1)[1])){
-    d_12[i]<-(bivn2[i,1]-m1_2)^2 # Ð´Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ Ñ…
-    d_22[i]<-(bivn2[i,2]-m2_2)^2 # Ð´Ð¸ÑÐ¿ÐµÑ€ÑÐ¸Ñ Ñƒ
-  }
-  #print("d_1")
-  #print(d_1)
-  #print(d_2)
-  d1<-E(d_1)
-  d2<-E(d_2)
-  d12<-Cov(bivn1,m1, m2)
-  r<-d12/(d1*d2)
-  d1_2<-E(d_12)
-  d2_2<-E(d_22)
-  d12_2<-Cov(bivn2,m1_2, m2_2)
-  r_2<-d12_2/(d1_2*d2_2)
-  P1<-n1/N
-  P2<-n2/N
-  x <- seq(-10, 10, by = 0.1)
-  y <- seq(-10, 10, by = 0.1)
-  XY<-cbind(x,y)
-  grid1<-c()
-  grid2<-c()
-  for (j in 1:(dim(XY)[1])){
-  p1<-Density(XY[j,],m1,m2,d1,d2,d12,r)
-  p2<-Density(XY[j,],m1_2,m2_2,d1_2,d2_2,d12_2,r_2)
-  print("p1")
-  print(p1)
-  l_p<-c()
-  l_p2<-c()
-  for (i in 1:(dim(bivn1)[1])){
-    l_p2[i]<-log(p2[i])
-    l_p[i]<-log(p1[i])
-   
-  }
-  grid1[j] <- log(P1)+sum(l_p, na.rm=TRUE)
-  grid2[j] <- log(P2)+sum(l_p2, na.rm=TRUE)
-  
-}
-  print(grid1)
-  print(grid2)
-  points(grid2,grid1, col=viridis(30),asp=1)
-  
-}
-A<-matrix(c(3,1,1,1),2,2)
-u<-c(1,2)
+### work
+#e<-E(iris[,3:4])
+#e 
 
-Expectation(A,u,200,200)
+D<- function(A,N){ #N-êîëè÷åñòâî âñåõ ýëåìåíòîâ â êëàññå
+  n<-dim(A)[2]
+  p<-1/N
+  a1<-c()
+  a2<-c()
+  ans<-c()
+
+    for (i in 1:N){
+      a1[i]<-(A[i,1])^2*p
+      a2[i]<-(A[i,1]*p)
+    }
+  ans[1]<-sum(a1)-(sum(a2))^2
+  for (i in 1:N){
+    a1[i]<-(A[i,2])^2*p
+    a2[i]<-(A[i,2]*p)
+  }
+  ans[2]<-sum(a1)-(sum(a2))^2
+  return (ans) 
+}
+Bayes<-function(data,E,D){#n-êîëè÷åñòâî ïðèçíàêîâ (x è ó â äàííîì ñëó÷àå)
+  
+  ans<-c()
+  data_new<-sqrt((data[1])^2+(data[2])^2)
+  D_new<-c()
+  E_new<-c()
+  for (i in 1:3){
+    D_new[i]<-sqrt((D[i,1])^2+(D[i,2])^2)
+    E_new[i]<-sqrt((E[i,1])^2+(E[i,2])^2)
+  }
+  for (j in 1:3){
+    
+      ans[j]<-1/sqrt(2*pi*D_new[j])*(exp(-(data_new-E_new[j])^2/(2*D_new[j])))
+    
+  }
+  return (ans) 
+}
+NN<-function(lambda, p){
+  lnp1<-0
+  lnp2<-0
+  answer<-c(0,0,0)
+ 
+  answer[1]<-log((1/3)*lambda[1])+log(p[1])
+  answer[2]<-log((1/3)*lambda[2])+log(p[2])
+  answer[3]<-log((1/3)*lambda[3])+log(p[3])
+  
+  return (which.max(answer))
+}
+
+colors <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
+plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col = colors[iris$Species], asp = 1)
+im <- seq(1, 7, length.out = 100)
+jm <- seq(0, 3, length.out = 50)
+m<-matrix(0,3,2)
+  m[1,]<-E(iris[1:50,3:4])
+  m[2,]<-E(iris[51:100,3:4])
+  m[3,]<-E(iris[101:150,3:4])
+d<-matrix(0,3,2)
+  d[1,]<-D(iris[1:50,3:4],50)
+  d[2,]<-D(iris[51:100,3:4],50)
+  d[3,]<-D(iris[101:150,3:4],50)
+
+
+p<-c()
+lambda<-c(1,1,1)
+colo <- c("1" = "coral1", "2" = "chartreuse", "3" = "deepskyblue")
+  for (i in 1:100){# 100
+     for (j in 1:50){#50
+     z <- c(im[i], jm[j])
+     p<-Bayes(z,m,d)
+     color<-NN(lambda,p)
+    color
+     #print(class1)
+     #asd[i,] <- c(im[i], jm[j], class1)
+     points(im[i], jm[j], asp = 1,bg = colo[color], col=colo[color]) 
+     }
+ }
+
 
