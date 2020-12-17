@@ -67,6 +67,14 @@ grid <- outer(
 ![](https://latex.codecogs.com/gif.latex?a_{11}a_{22}-a_{12}^2<0)
 - парабола
 ![](https://latex.codecogs.com/gif.latex?a_{11}a_{22}-a_{12}^2=0)
+
+
+
  Результат работы:
+ ![](https://github.com/Elzara20/university/blob/master/pictures/PlugInHyperbola.jpeg)
+ 
+ ![](https://github.com/Elzara20/university/blob/master/pictures/PlugInParabola.jpeg)
+ 
+ ![](https://github.com/Elzara20/university/blob/master/pictures/PlugInEl.jpeg)
 
  
