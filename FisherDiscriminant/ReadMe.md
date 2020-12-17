@@ -42,4 +42,4 @@ b<-log(0.5)-0.5*t((mu_2-mu_1))%*%solve(s)%*%(mu_2-mu_1)
 
 Результат алгоритма:
 
- 
+![](https://github.com/Elzara20/university/blob/master/pictures/fisher.jpeg)
