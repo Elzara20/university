@@ -45,7 +45,7 @@ Method()
 
 col<-2
 row<-1000
-mu <- c(1, 5);
+mu <- c(6, 4);
 sigma <- matrix(c(9,0,0,1),2,2)
 solve(sigma)
 df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma))/3;
@@ -102,7 +102,7 @@ f <- log(abs(det(s_2))) - log(abs(det(s_1))) + t(mu_2) %*% solve(s_2) %*% mu_2 -
 if (discriminant>0){
   str<-"эллипса"
 } else if (discriminant<0){
-  str<-"гиперболы"
+  str<-"параболы" #"гиперболы"
 } else{
   str<-"параболы"
 }

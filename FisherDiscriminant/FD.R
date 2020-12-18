@@ -4,7 +4,7 @@ library(wesanderson)
 library(MASS)
 col<-2
 row<-1000
-mu <- c(1, 5);
+mu <- c(6, 4);
 sigma <- matrix(c(9,0,0,1),2,2)
 solve(sigma)
 df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma))/3;
