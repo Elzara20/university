@@ -51,6 +51,10 @@ b<-log(0.5)-0.5*t((mu_2-mu_1))%*%solve(s)%*%(mu_2-mu_1)
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_1.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher.jpeg)
 
+
+
 ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_2.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_22.jpeg)
+
+
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_3.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_33.jpeg)
