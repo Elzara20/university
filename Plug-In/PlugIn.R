@@ -43,26 +43,15 @@ Method <-function(){
 Method()
 
 
-# сфера - определитель ковариационной матрицы равен 1, а коэффициент корреляции r=0
-A<-matrix(c(16,0,0,16),2,2)
-
-NormalDistribution(A)
-# наклоненный эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r!=0
-A1<-matrix(c(9,1,1,6),2,2)
-NormalDistribution(A1)
-#эллипс - определитель ковариационной матрицы>1, коэффициент корреляции r=0
-A2<-matrix(c(11,0,0,7),2,2)
-NormalDistribution(A2)
-
 col<-2
 row<-1000
-mu <- c(10, 5);
-sigma <- matrix(c(9,0,0,6),2,2)
+mu <- c(1, 5);
+sigma <- matrix(c(9,0,0,1),2,2)
 solve(sigma)
 df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma))/3;
 colnames(df) <- c("x", "y");
-mu1 <- c(4, 5);
-sigma1 <- matrix(c(14,0,0,14),2,2)
+mu1 <- c(2, 1);
+sigma1 <- matrix(c(2,0,0,3),2,2)
 solve(sigma1)
 solve(sigma1)-solve(sigma)
 det(solve(sigma1)-solve(sigma))
@@ -111,11 +100,11 @@ final2<-solve(s_2)%*%mu_2-solve(s_1)%*%mu_1
 
 f <- log(abs(det(s_2))) - log(abs(det(s_1))) + t(mu_2) %*% solve(s_2) %*% mu_2 - t(mu_1) %*% solve(s_1) %*% mu_1  
 if (discriminant>0){
-  str<-"эллипса"
+  str<-"�������"
 } else if (discriminant<0){
-  str<-"гиперболы"
+  str<-"���������"
 } else{
-  str<-"параболы"
+  str<-"��������"
 }
 grid <- outer(
   x,
@@ -124,9 +113,9 @@ grid <- outer(
     final[1,1]*x^2+final[2,2]*y^2+2*final[1,2]*x*y-2*final2[1,1]*x-2*final2[2,1]*y+f[1]
   
 )
-headline<-paste0("Кривая имеет вид ", str)
-plot(df,main=headline)
-points(df1,asp = 1, col="green")
+headline<-paste0("������ ����� ��� ", str)
+plot(df,pch = 22,bg = "yellow",main=headline)
+points(df1,asp = 1,pch = 21,bg = "green")
 contour(x,y,grid, levels=0, drawlabels=FALSE, lwd = 3, col = "red", add = TRUE,  main =headline) 
 
 

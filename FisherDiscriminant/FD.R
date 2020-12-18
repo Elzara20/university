@@ -4,13 +4,13 @@ library(wesanderson)
 library(MASS)
 col<-2
 row<-1000
-mu <- c(10, 5);
-sigma <- matrix(c(9,0,0,6),2,2)
+mu <- c(1, 5);
+sigma <- matrix(c(9,0,0,1),2,2)
 solve(sigma)
 df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma))/3;
 colnames(df) <- c("x", "y");
-mu1 <- c(4, 5);
-sigma1 <- matrix(c(3,0,0,3),2,2)
+mu1 <- c(2, 1);
+sigma1 <- matrix(c(2,0,0,3),2,2)
 solve(sigma1)
 solve(sigma1)-solve(sigma)
 det(solve(sigma1)-solve(sigma))
