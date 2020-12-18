@@ -47,7 +47,8 @@ b<-log(0.5)-0.5*t((mu_2-mu_1))%*%solve(s)%*%(mu_2-mu_1)
 ## Сравнение подстановочного алгоритма (Plug-in) и линейного дискриминанта Фишера
 - ЛДФ проще в выполнении, чем plug-in (меньше мощности использует)
 - plug-in дает наиболее точные результаты (кривые 2 порядка), чем ЛДФ (прямая)
-Примеры:
+
+***Примеры***:
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_1.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher.jpeg)
 
