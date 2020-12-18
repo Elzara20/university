@@ -43,3 +43,14 @@ b<-log(0.5)-0.5*t((mu_2-mu_1))%*%solve(s)%*%(mu_2-mu_1)
 Результат алгоритма:
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/fisher.jpeg)
+
+## Сравнение подстановочного алгоритма (Plug-in) и линейного дискриминанта Фишера
+- ЛДФ проще в выполнении, чем plug-in (меньше мощности использует)
+- plug-in дает наиболее точные результаты (кривые 2 порядка), чем ЛДФ (прямая)
+Примеры:
+
+![](https://github.com/Elzara20/university/blob/master/pictures/fisher_1.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher.jpeg)
+
+![](https://github.com/Elzara20/university/blob/master/pictures/fisher_2.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_22.jpeg)
+
+![](https://github.com/Elzara20/university/blob/master/pictures/fisher_3.jpeg) | ![](https://github.com/Elzara20/university/blob/master/pictures/fisher_33.jpeg)
