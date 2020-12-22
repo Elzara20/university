@@ -45,17 +45,17 @@ Method()
 
 col<-2
 row<-1000
-mu <- c(6, 4);
-sigma <- matrix(c(9,0,0,1),2,2)
+mu <- c(1, 5);
+sigma <- matrix(c(1,0,0,1),2,2)
 solve(sigma)
-df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma))/3;
+df <- data.frame(mvrnorm(row, mu = mu, Sigma = sigma));
 colnames(df) <- c("x", "y");
-mu1 <- c(2, 1);
-sigma1 <- matrix(c(2,0,0,3),2,2)
+mu1 <- c(11, 5)
+sigma1 <- matrix(c(8,0,0,0.1),2,2)
 solve(sigma1)
 solve(sigma1)-solve(sigma)
 det(solve(sigma1)-solve(sigma))
-df1 <- data.frame(mvrnorm(row, mu = mu1, Sigma = sigma1))/4+2.05;
+df1 <- data.frame(mvrnorm(row, mu = mu1, Sigma = sigma1));
 colnames(df1) <- c("x1", "y1");
 
 
@@ -102,7 +102,7 @@ f <- log(abs(det(s_2))) - log(abs(det(s_1))) + t(mu_2) %*% solve(s_2) %*% mu_2 -
 if (discriminant>0){
   str<-"эллипса"
 } else if (discriminant<0){
-  str<-"параболы" #"гиперболы"
+  str<-"гиперболы"
 } else{
   str<-"параболы"
 }
@@ -113,9 +113,11 @@ grid <- outer(
     final[1,1]*x^2+final[2,2]*y^2+2*final[1,2]*x*y-2*final2[1,1]*x-2*final2[2,1]*y+f[1]
   
 )
+df<-cbind(df,"green")
+df1<-cbind(df1,"black")
+df<-rbind(df, df1)
 headline<-paste0("Кривая имеет вид ", str)
-plot(df,pch = 22,bg = "yellow",main=headline)
-points(df1,asp = 1,pch = 21,bg = "green")
+plot(df,pch = 21,bg = df[,3],main=headline)
 contour(x,y,grid, levels=0, drawlabels=FALSE, lwd = 3, col = "red", add = TRUE,  main =headline) 
 
 
