@@ -52,7 +52,7 @@ b<-log(0.5)-0.5*t((mu_2-mu_1))%*%solve(s)%*%(mu_2-mu_1)
 
 ![](https://github.com/Elzara20/university/blob/master/pictures/F_h.jpeg) 
 
-![]https://github.com/Elzara20/university/blob/master/pictures/F_hiperbola.jpeg)
+![](https://github.com/Elzara20/university/blob/master/pictures/F_hiperbola.jpeg)
 
 
 
