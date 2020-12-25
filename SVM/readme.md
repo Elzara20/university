@@ -67,35 +67,37 @@
     1. пересечение или сдвиг (b в уравнении) равен ```b(svm_model)/sqrt(sum(w^2))``` (используем именно эту формулу так как это показывает модуль расстоянию от гиперплоскости до начала координат.)
     2. угол наклона будет равен ```sqrt(sum(w^2))``` (норма вектора w)
 ```R
-data=data.frame(x=iris[30:40,1], y=iris[30:40,2], class=iris[30:40,5])
-data= rbind(data,data.frame(x=iris[50:60,1], y=iris[50:60,2], class=iris[50:60,5]))
-
-svm_model= ksvm(class ~ x+ y, data=data, kernel='vanilladot')
-
-w = colSums(coef(svm_model) * data[alphaindex(svm_model)[[1]],c('x','y')])  
-b = b(svm_model)
-data[, 1:2] = sapply(data[,1:2], scale)
-
-ggplot(data,aes(x, y, color=class)) +
-  geom_point(size=3) + geom_abline(intercept=b/sqrt(sum(w^2)), slope=sqrt(sum(w^2))) 
+model_svm<- ksvm(x = xl[,1:2],y = xl[,3], type="C-svc", kernel = "vanilladot", C = c,prob.model=TRUE)
+b <- b(model_svm)
+w <- colSums(coef(model_svm)[[1]] * xl[alphaindex(model_svm)[[1]],-3])  
+plot(model_svm, data = xl[,1:2], main=headline)
+abline(b/w[1],-w[2]/w[1], lwd = 3)
 ```
 
 Линейная выборка
-с=1
+
+
+С=1
 
 ![](https://github.com/Elzara20/university/blob/master/SVM/svm_c%3D1.jpeg)
 
-с=100
+С=100
 
 ![](https://github.com/Elzara20/university/blob/master/SVM/svm.jpeg)
 Нелинейная выборка
-с=1
+
+
+С=1
+
+
 ![](https://github.com/Elzara20/university/blob/master/SVM/svm_nolin_c%3D1.jpeg)
-с=100
+
+С=100
+
 ![](https://github.com/Elzara20/university/blob/master/SVM/svm_noln_c%3D100.jpeg)
 
 
-ИТОГ: на линейную выборку при с количество и качество опорных точек не изменяется, при нелинейной выборке при с=100 количество - меньше и качество опорных точек -точнее, а при с=1 количество точек больше, а качество меньше (больше точек, которые не влияют на разделение)
+ИТОГ: на линейную выборку при С количество и качество опорных граничных точек точек не изменяется, при нелинейной выборке при С=100 количество - меньше и качество опорных точек -точнее, а при С=1 количество точек больше, а качество меньше (больше точек, которые не влияют на разделение)
 
 ## Ядро
 
