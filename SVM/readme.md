@@ -80,8 +80,22 @@ ggplot(data,aes(x, y, color=class)) +
   geom_point(size=3) + geom_abline(intercept=b/sqrt(sum(w^2)), slope=sqrt(sum(w^2))) 
 ```
 
+Линейная выборка
+с=1
 
-![](https://github.com/Elzara20/university/blob/master/pictures/svm.jpeg)
+![](https://github.com/Elzara20/university/blob/master/SVM/svm_c%3D1.jpeg)
+
+с=100
+
+![](https://github.com/Elzara20/university/blob/master/SVM/svm.jpeg)
+Нелинейная выборка
+с=1
+![](https://github.com/Elzara20/university/blob/master/SVM/svm_nolin_c%3D1.jpeg)
+с=100
+![](https://github.com/Elzara20/university/blob/master/SVM/svm_noln_c%3D100.jpeg)
+
+
+ИТОГ: на линейную выборку при с количество и качество опорных точек не изменяется, при нелинейной выборке при с=100 количество - меньше и качество опорных точек -точнее, а при с=1 количество точек больше, а качество меньше (больше точек, которые не влияют на разделение)
 
 ## Ядро
 
