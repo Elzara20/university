@@ -130,15 +130,24 @@ n - номер разбиения
 ![](https://latex.codecogs.com/gif.latex?Q%5El_n%3DQ%28%5Cmu%20%28X%5El_n%29%2C%20X%5El_n%29)
 
 ПРОБЛЕМА: разброс величины ![](https://latex.codecogs.com/gif.latex?Q^k_n) (частота ошбок мала, но значения ![](https://latex.codecogs.com/gif.latex?Q^k_n) большие для разбиения)
+
+
 РЕШЕНИЕ: применение функции распределения ![](https://latex.codecogs.com/gif.latex?R%28%5Cmu%2C%20X%5El%29%3DP_n%5Cleft%20%5C%7B%20Q%5Ek_n%3E%5Cvarepsilon%20%5Cright%20%5C%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bn%3D1%7D%5E%7BN%7D%5Cleft%20%5B%20Q%5Ek_n%3E%5Cvarepsilon%20%5Cright%20%5D)
+
+
 +ЕЩЁ РЕШЕНИЕ: иногда удобно расчитывать величину переобученности ![](https://latex.codecogs.com/gif.latex?Q_%5Cvarepsilon%20%28%5Cmu%2C%20X%5El%29%3DP_n%5Cleft%20%5C%7B%20%5Cdelta%20%28%5Cmu%2C%20X%5El_n%2CX%5Ek_n%29%3E%5Cvarepsilon%20%5Cright%20%5C%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bn%3D1%7D%5E%7BN%7D%5Cleft%20%5B%20Q%5Ek_n-Q%5El_n%3E%5Cvarepsilon%20%5Cright%20%5D)
+
 Функционал ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon) является кусочно-постоянной невозрастающей функцией параметра ![](https://latex.codecogs.com/gif.latex?\varepsilon). Пусть имеется его оценка сверху ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon&space;\leqslant&space;\eta&space;(\varepsilon&space;)), где ![](https://latex.codecogs.com/gif.latex?\eta&space;(\varepsilon&space;)) — монотонно убывающая функция. Функция ![](https://latex.codecogs.com/gif.latex?\varepsilon(\eta)), обратная к ![](https://latex.codecogs.com/gif.latex?\eta&space;(\varepsilon&space;)), также монотонно убывающая. Тогда ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon) эквивалентно утверждению, что для данного метода и выборки с вероятностью, не меньшей ![](https://latex.codecogs.com/gif.latex?1-\eta), выполняется неравенство ![](https://latex.codecogs.com/gif.latex?Q_n^k\leqslant&space;Q_n^l&plus;\varepsilon(\eta)). В этом случае говорят, что обучение ***состоятельно*** с точностью ![](https://latex.codecogs.com/gif.latex?\varepsilon) и надёжностью ![](https://latex.codecogs.com/gif.latex?\eta).
+
 - Контроль по отдельным объектам (leave one out CV): k = 1
 ![](https://latex.codecogs.com/gif.latex?LOO%28%5Cmu%2C%20X%5EL%29%3D%5Cfrac%7B1%7D%7BL%7D%5Csum_%7Bi%3D1%7D%5E%7BL%7DQ%28X%5EL%20%5Csetminus%20%5Cleft%20%5C%7B%20x_i%20%5Cright%20%5C%7D%2C%5Cleft%20%5C%7B%20x_i%20%5Cright%20%5C%7D%29)
+
+
 Проблема: ресурсоемкость
 
 - Контроль по q блокам (q-fold CV): случайное разбиение ![](https://latex.codecogs.com/gif.latex?X%5EL%3DX%5E%7Bl_1%7D_1%5Ccup%20%5Ccdots%20%5Ccup%20X%5E%7Bl_q%7D_q) на q блоков (почти) равной длины
 ![](https://latex.codecogs.com/gif.latex?CV_q%28%5Cmu%2C%20X%5EL%29%3D%5Cfrac%7B1%7D%7Bq%7D%5Csum_%7Bi%3D1%7D%5E%7Bq%7DQ%28X%5EL%20%5Csetminus%20X%5E%7Bl_i%7D_i%2CX%5E%7Bl_i%7D_i%29)
+
 Проблема:
 - -  оценка существенно зависит от разбиения на блоки;
 - - каждый объект лишь один раз участвует в контроле.
