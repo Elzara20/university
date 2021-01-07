@@ -2,6 +2,10 @@
 
 [1. Задача обучения по прецедентам. Основные понятия и определения](##1.Задачаобученияпопрецедентам.Основныепонятияиопределения)
 
+[2. Модель алгоритмов и метод обучения. Функционал качества и функция потерь](##2.Модельалгоритмовиметодобучения.Функционалкачестваифункцияпотерь)
+
+[3. Проблема переобучения и понятие обобщающей способности. Эмпирические оценки обобщающей способности. Разновидности скользящего контроля](##3.Проблемапереобученияипонятиеобобщающейспособности.Эмпирическиеоценкиобобщающейспособности.Разновидностискользящегоконтроля)
+
 
 
 ## 1.Задача обучения по прецедентам. Основные понятия и определения.
@@ -170,13 +174,102 @@ n - номер разбиения
 - - каждый объект участвует в контроле ровно t раз;
 - - можно вычислять доверительные интервалы (при t > или прблизительно 20)
 
+## 2. Модель алгоритмов и метод обучения. Функционал качества и функция потерь
+ Моделью алгоритмов называется параметрическое семейство отображений ![](https://latex.codecogs.com/gif.latex?A%3D%5Cleft%20%5C%7B%20g%28x%2C%5Ctheta%29%20%7C%20%5Ctheta%20%5Cin%20%5CTheta%20%5Cright%20%5C%7D%2C%20%5C%3A%20g%3AX%5Ctimes%20%5CTheta%20%5Crightarrow%20Y), g — некоторая фиксированная функция, ![](https://latex.codecogs.com/gif.latex?\Theta) — множество допустимых значений параметра ![](https://latex.codecogs.com/gif.latex?\theta), называемое пространством параметров или пространством поиска (search space).
+
+Линейные модели с вектором параметров ![](https://latex.codecogs.com/gif.latex?%5Ctheta%3D%5Cleft%20%28%5Ctheta_1%2C%5Ccdots%20%2C%20%5Ctheta_n%20%5Cright%20%29%5Cin%20%5CTheta%20%3D%5Cmathbb%7BR%7D%5En):
+
+- ![](https://latex.codecogs.com/gif.latex?g(x,\theta&space;)=\sum_{j=1}^{n}\theta_jf_j(x)) - для задачи восстановления регрессии, ![](https://latex.codecogs.com/gif.latex?Y=\mathbb{R}) 
+- ![](https://latex.codecogs.com/gif.latex?g(x,\theta&space;)=sign\sum_{j=1}^{n}\theta_jf_j(x)) -для задач классификации ![](https://latex.codecogs.com/gif.latex?Y%3D%5Cleft%20%5C%7B%20-1%2C&plus;1%20%5Cright%20%5C%7D) 
+>Признаки могут быть не только измерения, но и функции от них (выше)
+
+Пример: если будем классифицировать выбокру из второго измерения (х_i,у_i) и введем n признаков, так чтобы ![](https://latex.codecogs.com/gif.latex?f_j(x)=x^{j-1}) по формулам g, то получим полином степени n-1.
+Процесс подбора оптимального параметра модели ![](https://latex.codecogs.com/gif.latex?\theta) по обучающей выборке ![](https://latex.codecogs.com/gif.latex?X^l) называют настройкой (fitting) или обучением (training, learning) алгоритма ![](https://latex.codecogs.com/gif.latex?a\in&space;A).
+
+**Методом обучения** называется отображение ![](https://latex.codecogs.com/gif.latex?\mu:(X\times&space;Y)^l\rightarrow&space;A), которое произвольной конечной выборке ![](https://latex.codecogs.com/gif.latex?X^l) ставит в соответствие алгоритм a: X → Y . Говорят также, что метод ![](https://latex.codecogs.com/gif.latex?\mu) строит алгоритм a по выборке ![](https://latex.codecogs.com/gif.latex?X^l). Метод обучения, как и сам алгоритм a, должен допускать эффективную программную реализацию.
+Итак, в задачах обучения по прецедентам чётко различаются два этапа:
+- на этапе обучения метод ![](https://latex.codecogs.com/gif.latex?\mu) по выборке ![](https://latex.codecogs.com/gif.latex?X^l) строит алгоритм ![](https://latex.codecogs.com/gif.latex?a=\mu&space;(X^l));
+- на этапе применения алгоритму a подаются на вход новые объекты x, в общем
+случае отличные от обучающих, для получения ответов y = a(x).
+
+Этап обучения наиболее сложен. Как правило, он сводится к поиску параметров
+модели, доставляющих оптимальное значение заданному функционалу качества.
+
+#### Функционал качества
+Функция потерь (loss function) — это неотрицательная функция L (a, x), характеризующая величину ошибки алгоритма a на объекте x. Если L (a, x) = 0, то ответ a(x) называется корректным.
+Функционал качества алгоритма ![](https://latex.codecogs.com/gif.latex?a) на выборке ![](https://latex.codecogs.com/gif.latex?X^l):
+
+![](https://latex.codecogs.com/gif.latex?Q(a,&space;X^l)=\frac{1}{l}\sum_{i=1}^{l}\mathfrak{L}(a,x_i))
+
+Функционал Q называют также функционалом средних потерь или эмпирическим риском, так как он вычисляется по эмпирическим данным (xi, yi).
+>Эмпирические данные — данные, полученные путём наблюдения или эксперимента.
+
+Функция потерь, принимающая только значения 0 и 1, называется бинарной.
+В этом случае L(a, x)=1 означает, что алгоритм a допускает ошибку на объекте x,
+а функционал Q называется частотой ошибок алгоритма a на выборке ![](https://latex.codecogs.com/gif.latex?X^l).
+Наиболее часто используются следующие функции потерь, при ![](https://latex.codecogs.com/gif.latex?Y\subseteq&space;\mathbb{R}):
+- ![](https://latex.codecogs.com/gif.latex?\mathfrak{L}(a,x)=\left&space;[&space;a(x)\neq&space;y^*(x)&space;\right&space;]) — индикатор ошибки, обычно применяется в задачах
+классификации (ответ будет 0 или 1);
+- ![](https://latex.codecogs.com/gif.latex?\mathfrak{L}(a,x)=|&space;a(x)-&space;y^*(x)&space;|) — отклонение от правильного ответа; функционал Q называется средней ошибкой алгоритма ![](https://latex.codecogs.com/gif.latex?a) на выборке ![](https://latex.codecogs.com/gif.latex?X^l);
+- ![](https://latex.codecogs.com/gif.latex?%5Cmathfrak%7BL%7D%28a%2Cx%29%3D%28a%28x%29-y%5E*%28x%29%29%5E2) — квадратичная функция потерь; функционал Q называется средней квадратичной ошибкой алгоритма ![](https://latex.codecogs.com/gif.latex?a) на выборке ![](https://latex.codecogs.com/gif.latex?X^l); обычно применяется в задачах регрессии.
+
+Классический метод обучения, называемый минимизацией эмпирического риска (empirical risk minimization, ERM), заключается в том, чтобы найти в заданной модели A алгоритм ![](https://latex.codecogs.com/gif.latex?a), доставляющий минимальное значение функционалу качества Q на заданной обучающей выборке ![](https://latex.codecogs.com/gif.latex?X^l):
+![](https://latex.codecogs.com/gif.latex?\mu&space;(X^l)=\arg&space;\min_{a&space;\in&space;A}&space;Q(a,X^l))
+
+## 3. Проблема переобучения и понятие обобщающей способности. Эмпирические оценки обобщающей способности. Разновидности скользящего контроля
+
+Минимум функционала качества алгоритма не гарантирует хороший результат для произвольной контрольной выборки. Когда качество работы алгоритма на новых объектах, не вошедших в состав обучения, оказывается существенно хуже, чем на обучающей выборке, говорят об эффекте **переобучения (overtraining) или переподгонки (overfitting)**.
+>вероятность ошибки на тестовой выборке ![](https://latex.codecogs.com/gif.latex?>) (существенно выше) чем средняя ошибка на обучающей выборке.  
+Переобучение возникает при использовании избыточно сложных моделей.
+
+По сути алгоритм просто запоминает обучающуюся выборку ![](https://latex.codecogs.com/gif.latex?x_i\in&space;X^l): берет объект х и сравнивает с обучающей выборкой ![](https://latex.codecogs.com/gif.latex?x_i), если ![](https://latex.codecogs.com/gif.latex?x=x_i) - алгоритм выдаст правильный ответ, иначе - произвольный ответ.Однако этот алгоритм не способен восстановить зависимость вне материала обучения. Отсюда вывод: для успешного обучения необходимо не только запоминать, но и обобщать.
+
+**Обобщающая способность (generalization ability, generalization performance).** Говорят, что алгоритм обучения обладает способностью к обобщению, если вероятность ошибки на тестовой выборке достаточно мала или хотя бы предсказуема, то есть не сильно отличается от ошибки на обучающей выборке. 
+>вероятность ошибки на тестовой выборке ![](https://latex.codecogs.com/gif.latex?\approx) вероятность ошибки на обучающей выборке
+
+**Недообучение** — нежелательное явление, возникающее при решении задач обучения по прецедентам, когда алгоритм обучения не обеспечивает достаточно малой величины средней ошибки на обучающей выборке. 
+>вероятность ошибки на обучающей выборке ![](https://latex.codecogs.com/gif.latex?>&space;\varepsilon)
+Недообучение возникает при использовании недостаточно сложных моделей.
+
+Разобьём полную выборку ![](https://latex.codecogs.com/gif.latex?X^L) на две непересекающихся подвыборки: обучающую ![](https://latex.codecogs.com/gif.latex?X^l) и контрольную ![](https://latex.codecogs.com/gif.latex?X^k) , ![](https://latex.codecogs.com/gif.latex?L=k+l).
+**Переобученностью** алгоритма ![](https://latex.codecogs.com/gif.latex?a=\mu(X^l)) на паре выборок ![](https://latex.codecogs.com/gif.latex?(X^l,X^k)) будем называть разность  ![](https://latex.codecogs.com/gif.latex?\delta&space;(\mu,&space;X^l,&space;X^k)=Q(a,X^k)-Q(a,X^l)).
+Функционал **полного скользящего контроля (complete cross-validation)** определяется как средняя частота ошибок на контрольных подвыборках:
+![](https://latex.codecogs.com/gif.latex?CVV(\mu,&space;X^L)=\frac{1}{N}\sum_{n=1}^{N}Q^k_n)
+> ![](https://latex.codecogs.com/gif.latex?N) - от множества разбиений ![](https://latex.codecogs.com/gif.latex?%5Cleft%20%5C%7B%201%2C%5Ccdots%20%2C%20N%20%5Cright%20%5C%7D)
+n - номер разбиения
+![](https://latex.codecogs.com/gif.latex?Q%5Ek_n%3DQ%28%5Cmu%20%28X%5El_n%29%2C%20X%5Ek_n%29)
+![](https://latex.codecogs.com/gif.latex?Q%5El_n%3DQ%28%5Cmu%20%28X%5El_n%29%2C%20X%5El_n%29)
+
+ПРОБЛЕМА: разброс величины ![](https://latex.codecogs.com/gif.latex?Q^k_n) (частота ошбок мала, но значения ![](https://latex.codecogs.com/gif.latex?Q^k_n) большие для разбиения)
 
 
+РЕШЕНИЕ: применение функции распределения ![](https://latex.codecogs.com/gif.latex?R%28%5Cmu%2C%20X%5El%29%3DP_n%5Cleft%20%5C%7B%20Q%5Ek_n%3E%5Cvarepsilon%20%5Cright%20%5C%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bn%3D1%7D%5E%7BN%7D%5Cleft%20%5B%20Q%5Ek_n%3E%5Cvarepsilon%20%5Cright%20%5D)
 
 
++ЕЩЁ РЕШЕНИЕ: иногда удобно расчитывать величину переобученности ![](https://latex.codecogs.com/gif.latex?Q_%5Cvarepsilon%20%28%5Cmu%2C%20X%5El%29%3DP_n%5Cleft%20%5C%7B%20%5Cdelta%20%28%5Cmu%2C%20X%5El_n%2CX%5Ek_n%29%3E%5Cvarepsilon%20%5Cright%20%5C%7D%3D%5Cfrac%7B1%7D%7BN%7D%5Csum_%7Bn%3D1%7D%5E%7BN%7D%5Cleft%20%5B%20Q%5Ek_n-Q%5El_n%3E%5Cvarepsilon%20%5Cright%20%5D)
+
+Функционал ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon) является кусочно-постоянной невозрастающей функцией параметра ![](https://latex.codecogs.com/gif.latex?\varepsilon). Пусть имеется его оценка сверху ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon&space;\leqslant&space;\eta&space;(\varepsilon&space;)), где ![](https://latex.codecogs.com/gif.latex?\eta&space;(\varepsilon&space;)) — монотонно убывающая функция. Функция ![](https://latex.codecogs.com/gif.latex?\varepsilon(\eta)), обратная к ![](https://latex.codecogs.com/gif.latex?\eta&space;(\varepsilon&space;)), также монотонно убывающая. Тогда ![](https://latex.codecogs.com/gif.latex?Q_\varepsilon) эквивалентно утверждению, что для данного метода и выборки с вероятностью, не меньшей ![](https://latex.codecogs.com/gif.latex?1-\eta), выполняется неравенство ![](https://latex.codecogs.com/gif.latex?Q_n^k\leqslant&space;Q_n^l&plus;\varepsilon(\eta)). В этом случае говорят, что обучение ***состоятельно*** с точностью ![](https://latex.codecogs.com/gif.latex?\varepsilon) и надёжностью ![](https://latex.codecogs.com/gif.latex?\eta).
+
+- Контроль по отдельным объектам (leave one out CV): k = 1
+![](https://latex.codecogs.com/gif.latex?LOO%28%5Cmu%2C%20X%5EL%29%3D%5Cfrac%7B1%7D%7BL%7D%5Csum_%7Bi%3D1%7D%5E%7BL%7DQ%28X%5EL%20%5Csetminus%20%5Cleft%20%5C%7B%20x_i%20%5Cright%20%5C%7D%2C%5Cleft%20%5C%7B%20x_i%20%5Cright%20%5C%7D%29)
 
 
+Проблема: ресурсоемкость
+
+- Контроль по q блокам (q-fold CV): случайное разбиение ![](https://latex.codecogs.com/gif.latex?X%5EL%3DX%5E%7Bl_1%7D_1%5Ccup%20%5Ccdots%20%5Ccup%20X%5E%7Bl_q%7D_q) на q блоков (почти) равной длины
+![](https://latex.codecogs.com/gif.latex?CV_q%28%5Cmu%2C%20X%5EL%29%3D%5Cfrac%7B1%7D%7Bq%7D%5Csum_%7Bi%3D1%7D%5E%7Bq%7DQ%28X%5EL%20%5Csetminus%20X%5E%7Bl_i%7D_i%2CX%5E%7Bl_i%7D_i%29)
+
+Проблема:
+- -  оценка существенно зависит от разбиения на блоки;
+- - каждый объект лишь один раз участвует в контроле.
 
 
+- Контроль t раз по q блокам (t×q-fold CV) — стандарт «де факто» для тестирования методов обучения.
+Выборка X^L разбивается t раз случайным образом на q блоков
+![](https://latex.codecogs.com/gif.latex?X%5EL%3DX%5E%7Bl_1%7D_%7Bs1%7D%5Ccup%20%5Ccdots%20%5Ccup%20X%5E%7Bl_q%7D_%7Bsq%7D%2C%5C%3B%20s%3D%5Coverline%7B1%2Ct%7D%2C%20%5C%3B%20l_1&plus;%5Ccdots%20&plus;l_q%3DL)
+![](https://latex.codecogs.com/gif.latex?CV_%7Bt%5Ctimes%20q%7D%28%5Cmu%2C%20X%5EL%29%3D%5Cfrac%7B1%7D%7Bt%7D%5Csum_%7Bs%3D1%7D%5E%7Bt%7D%5Cfrac%7B1%7D%7Bq%7D%5Csum_%7Bn%3D1%7D%5E%7Bq%7DQ%28X%5EL%5Csetminus%20X%5E%7Bl_n%7D_%7Bsn%7D%2CX%5E%7Bl_n%7D_%7Bsn%7D%29)
 
-
+Преимущества t×q-fold CV:
+- - увеличением t можно улучшать точность оценки(компромисс между точностью и временем вычислений);
+- - каждый объект участвует в контроле ровно t раз;
+- - можно вычислять доверительные интервалы (при t > или прблизительно 20)
