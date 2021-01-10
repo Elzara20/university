@@ -360,7 +360,7 @@ n - номер разбиения
 
 ![](https://latex.codecogs.com/gif.latex?a%28u%2CX%5El%2Ch%29%3D%5Carg%5Cmax_%7By%5Cin%20Y%7D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cleft%20%5B%20y_u%5E%7B%28i%29%7D%3Dy%20%5Cright%20%5DK%28%5Cfrac%7B%5Crho%28u%2Cx_u%5Ei%29%7D%7B%5Crho%28u%2Cx_u%5E%7Bk&plus;1%7D%29%7D%29)
 
-![ALGORITHM](https://github.com/Elzara20/university/tree/master/Parzen%20window)
+[ALGORITHM](https://github.com/Elzara20/university/tree/master/Parzen%20window)
 
 ## 6. Метрические алгоритмы классификации: метод потенциальных функций.
 
@@ -376,9 +376,9 @@ n - номер разбиения
 -потенциалы просто применяются, не минимизируются.
 РЕШЕНИЕ: переход к радиальным базисным функциям (объект ![](https://latex.codecogs.com/gif.latex?u) сравнивается с центрами потенциалов, которые не совпадают с обучающей выборкой)
 
-![ALGORITHM](https://github.com/Elzara20/university/tree/master/Potential%20functions)  
+[ALGORITHM](https://github.com/Elzara20/university/tree/master/Potential%20functions)  
 
 ## 7. Понятие отступа объекта. Эталонные объекты. Алгоритм STOLP.
-![ТУТ](https://github.com/Elzara20/university/tree/master/STOLP)
+[ТУТ](https://github.com/Elzara20/university/tree/master/STOLP)
 
 
