@@ -522,7 +522,9 @@ n - номер разбиения
 Если М>1, то объект xi классифицируется правильно, и находится на некотором удалении от разделяющей полосы.
 ## 13. Метод опорных векторов для линейно неразделимой выборки
 Весь метод - эвристика
+
 [20page, Воронцов](http://www.machinelearning.ru/wiki/images/6/68/voron-ML-Lin.pdf)
+
 Метод эквивалентен минимизации Q (Воронцов) и к [нахождению седловой точки Лагранжа](http://www.machinelearning.ru/wiki/index.php?title=SVM_%D0%B4%D0%BB%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE_%D0%BD%D0%B5%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B8%D0%BC%D0%BE%D0%B9_%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B8_%28%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%29) 
  [brief about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
 
