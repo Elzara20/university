@@ -390,4 +390,140 @@ n - номер разбиения
 ## 7. Понятие отступа объекта. Эталонные объекты. Алгоритм STOLP.
 [ТУТ](https://github.com/Elzara20/university/tree/master/STOLP)
 
+## 8. Аппроксимация эмпирического риска. Вероятностная интерпретация. Линейная модель классификации
+
+Рассмотрим задачу классификации с двумя классами Y = {−1, +1}.
+Модель алгоритмов: параметрическое семейство отображений a(x, w) = sign f(x, w), где w — вектор параметров. Функция f(x, w) называется *дискриминантной* функцией. (Если f(x, w) > 0, то алгоритм a относит объект x к классу +1, иначе к классу −1 Уравнение f(x, w) = 0 описывает разделяющую поверхность)
+Как обычно, задача обучения классификатора a(x, w) заключается в том, чтобы
+настроить вектор параметров w, имея обучающую выборку пар X^ℓ.
+
+Величина ![](https://latex.codecogs.com/gif.latex?M_i(w)=y_if(x_i,w)) называется **отступом (margin)** объекта ![](https://latex.codecogs.com/gif.latex?x_i) относительно алгоритма классификации ![](https://latex.codecogs.com/gif.latex?a(x,w)=\textrm{sign}f(x,w)).
+Если отступ меньше нуля - алгоритм допускает ошибку.
+
+АППРОКСИМАЦИЯ (суть - применяем число ошибок на обучающей выборке в функции потерь, а не величину ошибки алгоритма ):
+![](https://latex.codecogs.com/gif.latex?\mathfrak{L}(M))  монотонно невозрастающая функция отступа, мажорирующая пороговую функцию потерь: ![](https://latex.codecogs.com/gif.latex?\left&space;[&space;M<0&space;\right&space;]\leqslant&space;\mathfrak{L}(M)).
+
+
+![](https://latex.codecogs.com/gif.latex?Q%28w%2CX%5El%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cleft%20%5B%20M_i%28w%29%3C0%20%5Cright%20%5D%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5Cleqslant%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5Ctilde%7BQ%7D%28w%2CX%5El%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cmathfrak%7BL%7D%28M_i%28w%29%29%5Crightarrow%20%5Cmin_w)
+
+![картинка]()
+
+**Вероятностная модель данных**
+Множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством, и вместо модели разделяющей поверхности ![](https://latex.codecogs.com/gif.latex?f(x,w)) задана параметрическая модель совместной плотности распределения объектов и классов  ![](https://latex.codecogs.com/gif.latex?p(x,y|w)). Для настройки вектора параметров ![](https://latex.codecogs.com/gif.latex?w) по обучающей выборке ![](https://latex.codecogs.com/gif.latex?X^l), которая состаит из независимых наблюдений, применим принцип максимума правдоподобия.
+
+![](https://latex.codecogs.com/gif.latex?p%28X%5El%7Cw%29%3D%5Cprod_%7Bi%3D1%7D%5E%7Bl%7Dp%28x_i%2Cy_i%7Cw%29%5Crightarrow%20%5Cmax_w)
+
+
+удобнее прологарифмировать:
+
+![](https://latex.codecogs.com/gif.latex?%5Cln%28p%28X%5El%7Cw%29%29%3D%5Cprod_%7Bi%3D1%7D%5E%7Bl%7D%5Cln%28p%28x_i%2Cy_i%7Cw%29%29%5Crightarrow%20%5Cmax_w)
+
+
+следующие 2 задачи будут эквивалентны, если представить:
+
+![](https://latex.codecogs.com/gif.latex?-%5Cln%28p%28X%5El%7Cw%29%29%3D%5Cmathfrak%7BL%7D%28y_if%28x_i%2Cw%29%29)
+
+
+Зная модель плотности ![](https://latex.codecogs.com/gif.latex?p(x,y|w)), можно выписать вид разделяющей поверхности ![](https://latex.codecogs.com/gif.latex?f) и функцию ![](https://latex.codecogs.com/gif.latex?\mathfrak{L}). С другой стороны, задавая вид разделяющей поверхности и функцию потерь ![](https://latex.codecogs.com/gif.latex?\mathfrak{L}), казалось бы, из чисто эвристических соображений, мы тем самым неявно принимаем некоторую вероятностную модель данных.
+
+**Линейная модель классификации**
+![](https://latex.codecogs.com/gif.latex?X) - множество объектов
+![](https://latex.codecogs.com/gif.latex?Y%3D%5Cleft%5C%7B-1%2C1%5Cright%5C%7D) - ответы
+![](https://latex.codecogs.com/gif.latex?x%3D%28x%5E1%2C%5Ccdots%20%2Cx%5En%29%5Cin%20%5Cmathbb%7BR%7D%5En%2C%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20x%5Ej%3Df_j%28x%29) - признаковое описание объекта ![](https://latex.codecogs.com/gif.latex?x)
+Если дискриминантная функция определяется как скалярное произведение вектора ![](https://latex.codecogs.com/gif.latex?x) и вектора параметров ![](https://latex.codecogs.com/gif.latex?w\in\mathbb{R}^n), то получается линейный классификатор:
+
+![](https://latex.codecogs.com/gif.latex?a%28x%2Cw%29%3D%5Ctextrm%7Bsign%7D%28%5Cleft%20%5Clangle%20w%2Cx%20%5Cright%20%5Crangle%20-%20w_0%29%3D%5Ctextrm%7Bsign%7D%28%5Csum_%7Bj%3D1%7D%5E%7Bn%7Dw_jf_j%28x%29-w_0%29)
+
+![](https://latex.codecogs.com/gif.latex?%5Cleft%20%5Clangle%20w%2Cx%20%5Cright%20%5Crangle%20%3D0) -  определяет гиперплоскость, разделяющую классы в пространстве. 
+Параметр ![](https://latex.codecogs.com/gif.latex?w_0) иногда опускают. Иногда полагают, что среди признаков есть константа, ![](https://latex.codecogs.com/gif.latex?f_j(x)\equiv&space;-1), и тогда роль свободного коэффициента ![](https://latex.codecogs.com/gif.latex?w_0) играет параметр ![](https://latex.codecogs.com/gif.latex?w_j).
+++биологический нейрон и функции активации
+
+## 9. Метод стохастического градиента. Эвристики для улучшения градиентных методов.
+> Градиент — это в основном наклон функции; степень изменения параметра вместе с величиной изменения другого параметра
+
+
+Дано: ![](https://latex.codecogs.com/gif.latex?X%5El%3D%5Cleft%20%5C%7B%20%28x_i%2Cy_i%29%20%5Cright%20%5C%7D_%7Bi%3D1%7D%5E%7Bl%7D%2C%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20x_i%20%5Cin%20%5Cmathbb%7BR%7D%5En%2C%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20y_i%20%5Cin%20%5Cleft%20%5C%7B%20-1%2C1%20%5Cright%20%5C%7D)
+Нужно: найти вектор весов ![](https://latex.codecogs.com/gif.latex?w%20%5Cin%20%5Cmathbb%7BR%7D%5En), при котором достигается минимум аппроксимированного эмпирического риска:
+
+![](https://latex.codecogs.com/gif.latex?Q%28w%2CX%5El%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cmathfrak%7BL%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29%5Crightarrow%20%5Cmin_w)
+
+
+Применим для минимизации метод градиентного спуска. Выбирается начальное приближение для вектора весов w, затем запускается итерационный процесс, на каждом шаге которого вектор w изменяется в направлении наиболее быстрого убывания функционала Q. Это направление противоположно вектору градиента ![](https://latex.codecogs.com/gif.latex?Q%5E%7B%27%7D%28w%29%3D%28%5Cfrac%7B%5Cpartial%20Q%28w%29%7D%7B%5Cpartial%20w_j%7D%29_%7Bj%3D1%7D%5E%7Bn%7D):
+
+![](https://latex.codecogs.com/gif.latex?w%3Dw-%5Ceta%20Q%5E%7B%27%7D%28w%29)
+
+![](https://latex.codecogs.com/gif.latex?\eta>0) - величина шага в направлении атиградиента или темп обучения. Предполагаем, что функция потерь дифференцируема:
+
+![](https://latex.codecogs.com/gif.latex?w%3Dw-%5Ceta%20%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cmathfrak%7BL%7D%5E%7B%27%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29x_iy_i)
+
+Улучшим сходимость итерационного процесса, выбирая прецеденты по одному и сразу обновляя веса:
+
+![](https://latex.codecogs.com/gif.latex?w%3Dw-%5Ceta%20%5Cmathfrak%7BL%7D%5E%7B%27%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29x_iy_i)
+
+В методе стохастического градиента (stochastic gradient, SG) прецеденты перебираются в случайном порядке. Если же объекты предъявлять в некотором фиксированном порядке, процесс может зациклиться или разойтись.
+ 
+***Весы***: инициализируются различными спосабами. Примеры:
+![](https://latex.codecogs.com/gif.latex?w_j%3D0%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%7C%7C%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20w_j%3Drand%28-%5Cfrac%7B1%7D%7B2n%7D%2C%5Cfrac%7B1%7D%7B2n%7D%29%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%7C%7C%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20w_j%3D%5Cfrac%7B%5Cleft%20%5Clangle%20y%2Cf_j%20%5Cright%20%5Crangle%7D%7B%5Cleft%20%5Clangle%20f_j%2Cf_j%20%5Cright%20%5Crangle%7D)
+
+Оценки являются точными в одном нереалистичном частном случае — когда функция потерь квадратична и признаки статистически независимы.
+***Критерий останова***:когда градиентный метод подходит к окрестности минимума, оценка скользящего среднего стабилизируется и приближается к точному значению функционала.
+***параметр сглаживания*** ![](https://latex.codecogs.com/gif.latex?\lambda): можно положить равным ![](https://latex.codecogs.com/gif.latex?\frac{1}{l})
+
+АЛГОРИТМ:
+Дано: ![](https://latex.codecogs.com/gif.latex?X^l,\eta&space;,\lambda)
+Выход: веса ![](https://latex.codecogs.com/gif.latex?w_i)
+1. инициализировать веса ![](https://latex.codecogs.com/gif.latex?w_i)
+2. инициализировать текущую оценку функционала: ![](https://latex.codecogs.com/gif.latex?Q%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cmathfrak%7BL%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29)
+3. while значение Q не стабилизируется и/или веса w не перестанут изменяться
+
+    3.1 случайным образом выбрать ![](https://latex.codecogs.com/gif.latex?x_i) из ![](https://latex.codecogs.com/gif.latex?X)
+    
+    3.2  вычислить выходное значение алгоритма ![](https://latex.codecogs.com/gif.latex?a(x_i,w))  и ошибку ![](https://latex.codecogs.com/gif.latex?%5Cvarepsilon_i%3D%5Cmathfrak%7BL%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29)
+    
+    3.3 сделать шаг градиентного спуска: ![](https://latex.codecogs.com/gif.latex?w%3Dw-%5Ceta%20%5Cmathfrak%7BL%7D%5E%7B%27%7D%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20y_i%29x_iy_i)
+    
+    3.4 найти значение Q ![](https://latex.codecogs.com/gif.latex?Q%3D%281-%5Clambda%20%29Q&plus;%5Clambda%20%5Cvarepsilon_i)
+    
+    
++легко реализуется и обобщается
++подходит для динамического обучения (обучающие объекты поступают потоком и каждый раз обновляется вектор)
++подходит для избыточно больших выборках
+-медленно сходится к минимуму
+-при большой размерности пространства или малой длине выборки возможно переобучение
+-возможность наличия горизонтально асимптоты (Чем больше значение скалярного произведения, тем ближе значение производной L′ к нулю, тем меньше приращение весов ---> некоторые веса будут статичными) 
+
+Улучшения:
+- нормализация данных
+большие значения нормы векторв объектов ![](https://latex.codecogs.com/gif.latex?%5Cleft%20%5C%7C%20x_i%20%5Cright%20%5C%7C) + функция потерь имеет горизонтальные асимптоты ---> итерационный процесс парализован. Решение (нормализация):
+![](https://latex.codecogs.com/gif.latex?x%5Ei%3D%5Cfrac%7Bx%5Ei-x%5Ei_%7B%5Cmin%7D%7D%7Bx%5Ei_%7Bmax%7D-x%5Ei_%7B%5Cmin%7D%7D%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%7C%7C%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20x%5Ei%3D%5Cfrac%7Bx%5Ei-x%5Ei_%7Bmean%7D%7D%7Bx%5Ei_%7BmeanSquared%7D%7D)
+- gорядок предъявления объектов
+Стандартная рекомендация - брать в случайном порядке
+
+    1. Брать объекты из разных классов
+    Наибольшее смещение весов ожидается для того объекта, который наименее похож на объекты, предъявленные до него. Называется перетасовкой объектов.
+    2. Предъявлять те объекты, на которых была допущена ошибка. Для этого вероятность появления каждого объекта устанавливается пропорционально величине ошибки на данном объекте. Эту эвристику рекомендуется применять только в тех случаях, когда исходные данные не содержат выбросов.
+    3. Сравнение величины ошибки с порогом. Если ошибка меньше погора - вектор весов не модифицируется
+- квадратичная реализация (также наз. сокращением весов)
+Добавляется штрафное слагаемое ![](https://latex.codecogs.com/gif.latex?\tau) 
+- выбор величины шага (уменьшение шага с числом итераций ![](https://latex.codecogs.com/gif.latex?\eta) и выбор адаптивного шага)
+- выбивание из локольных минимумов (при каждой стабилизации функционалов производить случайные модификации вектора весов, наз. встряхивание коэффициентов)
+- ранний останов
+
+## 10. Адаптивный линейный элемент. Персептрон Розенблатта. Теорема Новикова.
+[page 8](http://www.machinelearning.ru/wiki/images/6/68/voron-ML-Lin.pdf)
+## 11. Логистическая регрессия.
+[page 13](http://www.machinelearning.ru/wiki/images/6/68/voron-ML-Lin.pdf)
+
+## 12. Метод опорных векторов. Линейно разделимая выборка.
+![](https://latex.codecogs.com/gif.latex?M_i%28w%2Cw_0%29%3Dy_i%28%5Cleft%20%5Clangle%20w%2Cx_i%20%5Cright%20%5Crangle%20-%20w_0%29)
+
+М-отступ
+[67](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+Если М>1, то объект xi классифицируется правильно, и находится на некотором удалении от разделяющей полосы.
+## 13. Метод опорных векторов для линейно неразделимой выборки
+Весь метод - эвристика
+[20page, Воронцов](http://www.machinelearning.ru/wiki/images/6/68/voron-ML-Lin.pdf)
+Метод эквивалентен минимизации Q (Воронцов) и к [нахождению седловой точки Лагранжа](http://www.machinelearning.ru/wiki/index.php?title=SVM_%D0%B4%D0%BB%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE_%D0%BD%D0%B5%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B8%D0%BC%D0%BE%D0%B9_%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B8_%28%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%29) 
+ [brief about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
+
 
