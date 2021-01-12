@@ -406,7 +406,7 @@ n - номер разбиения
 
 ![](https://latex.codecogs.com/gif.latex?Q%28w%2CX%5El%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cleft%20%5B%20M_i%28w%29%3C0%20%5Cright%20%5D%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5Cleqslant%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5Ctilde%7BQ%7D%28w%2CX%5El%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bl%7D%5Cmathfrak%7BL%7D%28M_i%28w%29%29%5Crightarrow%20%5Cmin_w)
 
-![картинка]()
+![картинка](https://github.com/Elzara20/university/blob/master/EXAM/loss_function.jpg)
 
 **Вероятностная модель данных**
 Множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством, и вместо модели разделяющей поверхности ![](https://latex.codecogs.com/gif.latex?f(x,w)) задана параметрическая модель совместной плотности распределения объектов и классов  ![](https://latex.codecogs.com/gif.latex?p(x,y|w)). Для настройки вектора параметров ![](https://latex.codecogs.com/gif.latex?w) по обучающей выборке ![](https://latex.codecogs.com/gif.latex?X^l), которая состаит из независимых наблюдений, применим принцип максимума правдоподобия.
