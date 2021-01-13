@@ -17,6 +17,11 @@
 
 [7. Понятие отступа объекта. Эталонные объекты. Алгоритм STOLP](https://github.com/Elzara20/university/blob/master/EXAM/ReadMeSMPRexam.md#7-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5-%D0%BE%D1%82%D1%81%D1%82%D1%83%D0%BF%D0%B0-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%B0-%D1%8D%D1%82%D0%B0%D0%BB%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC-stolp)
 
+[8. Аппроксимация эмпирического риска. Вероятностная интерпретация. Линейная модель классификации]()
+
+[9. Метод стохастического градиента. Эвристики для улучшения градиентных методов]()
+
+[14. Вероятностная постановка задачи обучения. Принцип максимума правдоподобия](https://github.com/Elzara20/university/blob/master/EXAM/ReadMeSMPRexam.md#14-%D0%B2%D0%B5%D1%80%D0%BE%D1%8F%D1%82%D0%BD%D0%BE%D1%81%D1%82%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8-%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF-%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC%D1%83%D0%BC%D0%B0-%D0%BF%D1%80%D0%B0%D0%B2%D0%B4%D0%BE%D0%BF%D0%BE%D0%B4%D0%BE%D0%B1%D0%B8%D1%8F)
 
 
 
@@ -544,10 +549,11 @@ n - номер разбиения
 
 >С помощью апостериорной вероятности можно определить величину ожидаемых потерь:
 
-![](https://latex.codecogs.com/gif.latex?R(x)=\sum_{y\in&space;Y}^{}\lambda_yP(y|x))
+>![](https://latex.codecogs.com/gif.latex?R(x)=\sum_{y\in&space;Y}^{}\lambda_yP(y|x))
 
 >Пример: если перед нами съедобный, круглый, красный предмет, то мы скорей всего определим, что это яблоко. 
 
 Классификация по максимуму функции правдоподобия
+
 Частный случай: ![](https://latex.codecogs.com/gif.latex?a%28x%29%3D%5Carg%5Cmax_%7By%5Cin%20Y%7Dp_y%28x%29%3B%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20P_y%3Dconst).
 
