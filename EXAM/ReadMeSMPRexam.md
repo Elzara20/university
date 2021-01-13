@@ -532,9 +532,11 @@ n - номер разбиения
 
 Метод эквивалентен минимизации Q (Воронцов) и к [нахождению седловой точки Лагранжа](http://www.machinelearning.ru/wiki/index.php?title=SVM_%D0%B4%D0%BB%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE_%D0%BD%D0%B5%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B8%D0%BC%D0%BE%D0%B9_%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B8_%28%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%29) 
 
-[brief about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
+[briefly about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
 
 ## 14. Вероятностная постановка задачи обучения. Принцип максимума правдоподобия
+[briefly about #14-16](http://www.machinelearning.ru/wiki/images/9/98/Voron-ML-Bayes-slides.pdf)
+
 ![](https://latex.codecogs.com/gif.latex?P(y)\equiv&space;P_y) - априорная вероятность класса у;
 
 ![](https://latex.codecogs.com/gif.latex?p(x|y)\equiv&space;p_y(x)) - функция правдоподобия класса у;
@@ -542,7 +544,7 @@ n - номер разбиения
 ![](https://latex.codecogs.com/gif.latex?P(y|x))  — апостериорная вероятность класса y;
 
 
-Пусть ![](https://latex.codecogs.com/gif.latex?X) — множество объектов, ![](https://latex.codecogs.com/gif.latex?Y) — конечное множество имён классов, множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством с плотностью распределения ![](https://latex.codecogs.com/gif.latex?p(x,y)=P(y)p(x|y)). Вероятности появления объектов каждого из классов ![](https://latex.codecogs.com/gif.latex?P_y=P(y)) называются априорными вероятностями классов. Плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)=p(x|y)) называются функциями правдоподобия классов. Далее разделение на 2 класса. [page 18](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+Пусть ![](https://latex.codecogs.com/gif.latex?X) — множество объектов, ![](https://latex.codecogs.com/gif.latex?Y) — конечное множество имён классов, множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством с плотностью распределения ![](https://latex.codecogs.com/gif.latex?p(x,y)=P(y)p(x|y)). Вероятности появления объектов каждого из классов ![](https://latex.codecogs.com/gif.latex?P_y=P(y)) называются априорными вероятностями классов. Плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)=p(x|y)) называются функциями правдоподобия классов. Далее разделение на 2 класса (первая задача решается через наивный байесовский классификатор, вторая через оптимальное байесовское правило). [page 18](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
 
 >***Априорная или безусловная вероятность*** представляет собой степень уверенности в том, что данное событие произошло, в отсутствие любой другой информации, связанной с этим событием. Пример: в автопарке 12 машин и 5 мотоциклов, найдите вероятность того, что первому покупателю понравится автомобиль.
 
@@ -560,3 +562,14 @@ n - номер разбиения
 
 Частный случай: ![](https://latex.codecogs.com/gif.latex?a%28x%29%3D%5Carg%5Cmax_%7By%5Cin%20Y%7Dp_y%28x%29%3B%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20%5C%3B%20P_y%3Dconst).
 
+## 15. Вероятностная постановка задачи классификации. Функционал среднего риска. Оптимальное байесовское решающее правило.
+[page 18](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+
+При доказательстве правила почему возникает интеграл - по определению вероятности ошибки (первая формула после функционального риска)
+
+## 16. Апостериорные вероятности. Принцип максимума апостериорной вероятности. Разделяющая поверхность
+Воронцов
+
+![](https://latex.codecogs.com/gif.latex?a(x)=\arg\max_{y\in&space;Y}\lambda_yP(y|x)=\arg\max_{y\in&space;Y}P_yp_y(x))
+
+Если классы равнозначны ![](https://latex.codecogs.com/gif.latex?\lambda_y\equiv1), то байесовское правило называется также принципом максимума апостериорной вероятности. Если классы ещё и равновероятны ![](https://latex.codecogs.com/gif.latex?P_y\equiv\frac{1}{|Y|}), то объект x просто относится к классу y с наибольшим значением плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)) в точке ![](https://latex.codecogs.com/gif.latex?x).
