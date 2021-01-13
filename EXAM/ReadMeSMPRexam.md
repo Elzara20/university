@@ -536,8 +536,11 @@ n - номер разбиения
 
 ## 14. Вероятностная постановка задачи обучения. Принцип максимума правдоподобия
 ![](https://latex.codecogs.com/gif.latex?P(y)\equiv&space;P_y) - априорная вероятность класса у;
+
 ![](https://latex.codecogs.com/gif.latex?p(x|y)\equiv&space;p_y(x)) - функция правдоподобия класса у;
+
 ![](https://latex.codecogs.com/gif.latex?P(y|x))  — апостериорная вероятность класса y;
+
 
 Пусть ![](https://latex.codecogs.com/gif.latex?X) — множество объектов, ![](https://latex.codecogs.com/gif.latex?Y) — конечное множество имён классов, множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством с плотностью распределения ![](https://latex.codecogs.com/gif.latex?p(x,y)=P(y)p(x|y)). Вероятности появления объектов каждого из классов ![](https://latex.codecogs.com/gif.latex?P_y=P(y)) называются априорными вероятностями классов. Плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)=p(x|y)) называются функциями правдоподобия классов. Далее разделение на 2 класса. [page 18](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
 
