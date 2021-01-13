@@ -526,6 +526,26 @@ n - номер разбиения
 [20page, Воронцов](http://www.machinelearning.ru/wiki/images/6/68/voron-ML-Lin.pdf)
 
 Метод эквивалентен минимизации Q (Воронцов) и к [нахождению седловой точки Лагранжа](http://www.machinelearning.ru/wiki/index.php?title=SVM_%D0%B4%D0%BB%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE_%D0%BD%D0%B5%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B8%D0%BC%D0%BE%D0%B9_%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B8_%28%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%29) 
- [brief about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
 
+[brief about two sample:3-5 pages](http://www.machinelearning.ru/wiki/images/archive/a/a0/20150316172222%21Voron-ML-Lin-SVM.pdf)
 
+## 14. Вероятностная постановка задачи обучения. Принцип максимума правдоподобия
+
+Пусть ![](https://latex.codecogs.com/gif.latex?X) — множество объектов, ![](https://latex.codecogs.com/gif.latex?Y) — конечное множество имён классов, множество ![](https://latex.codecogs.com/gif.latex?X\times&space;Y) является вероятностным пространством с плотностью распределения ![](https://latex.codecogs.com/gif.latex?p(x,y)=P(y)p(x|y)). Вероятности появления объектов каждого из классов ![](https://latex.codecogs.com/gif.latex?P_y=P(y)) называются априорными вероятностями классов. Плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)=p(x|y)) называются функциями правдоподобия классов. Далее разделение на 2 класса. [page 18](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+
+>***Априорная или безусловная вероятность*** представляет собой степень уверенности в том, что данное событие произошло, в отсутствие любой другой информации, связанной с этим событием. Пример: в автопарке 12 машин и 5 мотоциклов, найдите вероятность того, что первому покупателю понравится автомобиль.
+***Апостериорной***  ![](https://latex.codecogs.com/gif.latex?P(y|x))называют условную вероятность значения, принимаемого случайной переменной, которое назначается после принятия во внимание некоторой новой, связанной с ней информации, и вычисляется с помощью теоремы Байеса, если известны  ![](https://latex.codecogs.com/gif.latex?p_y(x)) и ![](https://latex.codecogs.com/gif.latex?P_y). 
+
+![](https://latex.codecogs.com/gif.latex?P(y|x)=\frac{p(x,y)}{p(x)}=\frac{p_y(x)P_y}{\sum_{s\in&space;Y}^{}p_s(x)P_s})
+
+С помощью апостериорной вероятности можно определить величину ожидаемых потерь:
+
+![](https://latex.codecogs.com/gif.latex?R(x)=\sum_{y\in&space;Y}^{}\lambda_yP(y|x))
+
+Пример: если перед нами съедобный, круглый, красный предмет, то мы скорей всего определим, что это яблоко. 
+
+*Принцип максимума правдоподобия*: так как функция правдоподобия по Байесу равна  ![](https://latex.codecogs.com/gif.latex?p(x,y)=P(y)p(x|y)), то весь принцип сводится к максимизации апостериорной вероятности:
+
+![](https://latex.codecogs.com/gif.latex?a(x)=\arg\max_{y\in&space;Y}\lambda_yP(y|x))
+
+Если классы равнозначны ![](https://latex.codecogs.com/gif.latex?\lambda_y\equiv1), то байесовское правило называется также принципом максимума апостериорной вероятности. Если классы ещё и равновероятны ![](https://latex.codecogs.com/gif.latex?P_y\equiv\frac{1}{|Y|}), то объект x просто относится к классу y с наибольшим значением плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)) в точке ![](https://latex.codecogs.com/gif.latex?x).
