@@ -35,6 +35,14 @@
 
 [16. Апостериорные вероятности. Принцип максимума апостериорной вероятности. Разделяющая поверхность](https://github.com/Elzara20/university/blob/master/EXAM/ReadMeSMPRexam.md#15-%D0%B2%D0%B5%D1%80%D0%BE%D1%8F%D1%82%D0%BD%D0%BE%D1%81%D1%82%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB-%D1%81%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B3%D0%BE-%D1%80%D0%B8%D1%81%D0%BA%D0%B0-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5-%D0%B1%D0%B0%D0%B9%D0%B5%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B5-%D1%80%D0%B5%D1%88%D0%B0%D1%8E%D1%89%D0%B5%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%BE)
 
+[17. Непараметрическое восстановление плотности распределения. Метод парзеновского окнa]()
+
+[18. Нормальный дискриминантный анализ. Геометрия нормальной плотности. Квадратичный дискриминант. Расстояние Махаланобиса]()
+
+[19. Подстановочный алгоритм. Линейный дискриминант Фишера]()
+
+[20. Наивный нормальный байесовский классификатор]()
+
 
 
 ## 1.Задача обучения по прецедентам. Основные понятия и определения.
@@ -584,3 +592,36 @@ n - номер разбиения
 ![](https://latex.codecogs.com/gif.latex?a(x)=\arg\max_{y\in&space;Y}\lambda_yP(y|x)=\arg\max_{y\in&space;Y}P_yp_y(x))
 
 Если классы равнозначны ![](https://latex.codecogs.com/gif.latex?\lambda_y\equiv1), то байесовское правило называется также принципом максимума апостериорной вероятности. Если классы ещё и равновероятны ![](https://latex.codecogs.com/gif.latex?P_y\equiv\frac{1}{|Y|}), то объект x просто относится к классу y с наибольшим значением плотности распределения ![](https://latex.codecogs.com/gif.latex?p_y(x)) в точке ![](https://latex.codecogs.com/gif.latex?x).
+
+
+## 17. Непараметрическое восстановление плотности распределения. Метод парзеновского окна.
+
+[briefly](http://www.machinelearning.ru/wiki/images/9/98/Voron-ML-Bayes-slides.pdf)
+
+[Воронцов 22 стр](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+
+<ins>Параметрический подход</ins> - вводим параметрическое распределение, например нормальное распределение.
+
+
+<ins>Непараметрический подход</ins> - восстанавливаем плотность по выборке.
+
+
+Ядро характеризует вероятность того, насколько точки ![](https://latex.codecogs.com/gif.latex?x) и ![](https://latex.codecogs.com/gif.latex?x_i) похожи друг на друга. Чем дальше эти точки находятся, тем меньше значения ядра
+
+Многомерный случай - число объектов, необходимых для качественного оценивания, растет экспоненциально с ростом размерности. Чем больше размерность - тем больше нужно объектов.
+
+## 18. Нормальный дискриминантный анализ. Геометрия нормальной плотности. Квадратичный дискриминант. Расстояние Махаланобиса.
+[Воронцов 25 стр](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+
+
+[Геометрическая интерпретация  (моя работа)](https://github.com/Elzara20/university/tree/master/Distriburion%20lines)
+
+## 19. Подстановочный алгоритм. Линейный дискриминант Фишера.
+[Воронцов 29 стр](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
+
+Мои работы: [подстановочный алгоритм](https://github.com/Elzara20/university/tree/master/Plug-In) и [Фишер](https://github.com/Elzara20/university/tree/master/FisherDiscriminant)
+
+## 20. Наивный нормальный байесовский классификатор.
+[Моя работа](https://github.com/Elzara20/university/tree/master/naive)
+
+[Воронцов 29 стр](http://www.machinelearning.ru/wiki/images/6/6d/Voron-ML-1.pdf)
