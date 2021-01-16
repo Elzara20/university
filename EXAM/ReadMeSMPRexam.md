@@ -49,7 +49,8 @@
 
 [23. Постановка задачи восстановления регрессии. Метод наименьших квадратов. Непараметрическая регрессия]()
 
-[24. Линейная регрессия. Решение нормальной системы. Сингулярное разложение матриц]()
+[24. Линейная регрессия. Решение нормальной системы. Сингулярное разложение матриц](https://github.com/Elzara20/university/blob/master/EXAM/ReadMeSMPRexam.md#24-%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%B0%D1%8F-%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%81%D0%B8%D1%8F-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BD%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D1%81%D0%B8%D0%BD%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%BE%D0%B5-%D1%80%D0%B0%D0%B7%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D1%86)
+
 
 ## 1.Задача обучения по прецедентам. Основные понятия и определения.
 Задано множество объектов ![](https://latex.codecogs.com/gif.latex?X), множество допустимых ответов ![](https://latex.codecogs.com/gif.latex?Y), и существует целевая функция (target function) ![](https://latex.codecogs.com/gif.latex?y^*:X&space;\rightarrow&space;Y) значения которой ![](https://latex.codecogs.com/gif.latex?y_i=y^*(x_i)) известны только на конечном подмножестве объектов ![](https://latex.codecogs.com/gif.latex?x_i&space;\subset&space;X). Пары «объект–ответ» (xi, yi) называются прецедентами. Совокупность пар ![](https://latex.codecogs.com/gif.latex?X^l=(x_i,y_i)_{i=1}^l) называется обучающей выборкой (training sample).
