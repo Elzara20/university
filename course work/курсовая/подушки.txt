@@ -1,0 +1,34 @@
+﻿import numpy as np
+import math
+pr=np.array([[1,1,0.8], [1,0.3, 0.9], [1,0.2, 0.5]])
+w=np.array([0.0, 0.0, 0.0])
+def target(x):
+	if x[1]==1 and x[2]==0.8:
+		return 1
+	elif x[1]==0.3 and x[2]==0.9:
+		return 1
+	elif x[1]==0.2 and x[2]==0.5:
+		return 0
+def predict(x):
+	sum=w.dot(x)
+	if sum>0:
+		return 1
+	else:
+		return 0
+
+perfect=False
+while not perfect:
+	perfect=True
+	for p in pr:
+		if predict(p)!=target(p):
+			perfect=False
+			if predict(p)==0:
+				w+=p
+			else:
+				w-=p
+	
+
+print(w)
+
+q=np.array([1.0, 0.4, 0.9])
+print(predict(q))
