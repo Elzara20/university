@@ -204,3 +204,30 @@
 (hasfeature 'task '(4 14 3 (13) 2 (11 12) 1 10))
 ; YES
 ```
+### Функции высших порядков
+№1 Определите FUNCALL через функционал APPLY.
+``` Lisp
+(defun funcall1 (f &rest x) (apply f x))
+
+(funcall1 '* 2 3 5)
+(funcall1 '+ 2 3 5)
+```
+№3 Определите функционал (APL-APPLY f x), который применяет каждую функцию fi списка
+(f1 f2 ... fn)
+к соответствующему элементу списка
+x = (x1 x2 ... xn)
+и возвращает список, сформированный из результатов.
+``` Lisp
+(defun apl-apply (f x)
+    (cond
+        ((null x) nil)
+        (T (cons (apply (car f) (car x)) (apl-apply (cdr f) (cdr x))))
+    )
+)
+; f1, f2,f3 - созданы для примера apl-apply
+(defun f1 (x) (* x x))
+(defun f2 (x) (* x (f1 x)))
+(defun f3 (x) (* x (f2 x)))
+
+(apl-apply '(f1 f2 f3) '((3) (3) (3)))
+```
