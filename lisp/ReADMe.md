@@ -326,3 +326,17 @@ split_nine (x:xs) z
 main = print $  split_nine "123" "123"
 --- "(1(2(3)))"
 ```
+13. Определите функцию, которая, чередуя элементы списков (a b ...) и (1 2 ...), образует новый список (a 1 b 2 ...).
+```Haskell
+thirteen :: [Int] -> [Int] -> Int -> [Int]
+thirteen [] m i = m
+thirteen l [] i = l
+thirteen (x:xs) (h:t) i
+    | i `mod` 2==0 = x : thirteen xs (h:t) (i+1)
+    | i `mod` 2==1 = h : thirteen (x:xs) t (i+1)
+    
+main = print $  thirteen [1, 2, 3]  [4, 5, 6] 0
+-- [1,4,2,5,3,6]
+-- main = print $  thirteen [1, 2, 3]  [4, 5, 6, 44, 444] 0
+-- [1,4,2,5,3,6,44,444]
+```
