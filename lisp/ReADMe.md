@@ -352,5 +352,16 @@ main = print $ and (subset [1, 2, 3] [4, 3, 1, 2, 3] []) --True
 -- subset1 [] b = True
 -- subset1 (x:xs) b = elem x b && subset1 xs b
 
-- main = print $ subset1 [1, 2, 3] [4, 3, 1, 2, 3] 
+-- main = print $ subset1 [1, 2, 3] [4, 3, 1, 2, 3] 
+```
+21. Определите функция ПЕРЕСЕЧЕНИЕ, формирующую пересечение двух множеств, т.е. множество из их общих элементов.
+```Haskell
+intersection :: [Int]->[Int]->[Int]->[Int]
+intersection [] b c= c
+intersection (x:xs) b c
+    | (elem x b)==True  = c++x : intersection xs b c
+    | otherwise = intersection xs b c
+
+main = print $ intersection [1, 2, 3] [4, 3, 1, 2, 3] []
+-- [1,2,3]
 ```
