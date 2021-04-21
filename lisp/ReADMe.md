@@ -340,3 +340,17 @@ main = print $  thirteen [1, 2, 3]  [4, 5, 6] 0
 -- main = print $  thirteen [1, 2, 3]  [4, 5, 6, 44, 444] 0
 -- [1,4,2,5,3,6,44,444]
 ```
+19. Определите функцию ПОДМНОЖЕСТВО, которая проверяет, является ли одно множество подмножеством другого. Определите также СОБСТВЕННОЕ-ПОДМНОЖЕСТВО.
+```Haskell
+subset :: [Int]->[Int]->[Bool]->[Bool]
+subset [] b q= q ++ [True]
+subset (x:xs) b q= q ++ (elem x b):subset xs b q
+
+main = print $ and (subset [1, 2, 3] [4, 3, 1, 2, 3] []) --True
+-- простая реализация 
+-- subset1 :: [Int]->[Int]->Bool
+-- subset1 [] b = True
+-- subset1 (x:xs) b = elem x b && subset1 xs b
+
+- main = print $ subset1 [1, 2, 3] [4, 3, 1, 2, 3] 
+```
