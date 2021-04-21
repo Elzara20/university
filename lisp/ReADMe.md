@@ -314,3 +314,15 @@ split (x:xs) = (a,b)
             b=[ x | x <- xs, x `mod` 2 == 1 ]
 main = print $ split [1..10]
 ```
+9. Определите функцию, которая обращает список (а b с) и разбивает его на уровни (((с) b) а).
+``` Haskell
+-- при вводе 2 [Char] должны быть одинаковы
+split_nine :: [Char] -> [Char] -> [Char]
+split_nine [] z = "(" ++ ")"
+split_nine [x] z =  [x] ++ ")"
+split_nine (x:xs) z 
+    | x==z !!0 = "(" ++ x : "(" ++ (split_nine xs z) ++ ")"
+    | otherwise    = x : "(" ++ (split_nine xs z) ++ ")"
+main = print $  split_nine "123" "123"
+--- "(1(2(3)))"
+```
