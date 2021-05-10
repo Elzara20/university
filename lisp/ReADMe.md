@@ -250,11 +250,16 @@ x = (x1 x2 ... xn)
 списка список.
 ``` Lisp
 (defun somepred (p x)
-(cond
-((null x) nil)
-(T (cons (eval (list (car p) (car x))) (somepred (cdr p) (cdr x))))
+    (cond
+        ((null x) nil)
+        ((funcall p (car x)) 'YES)
+        (T 
+             (somepred p (cdr x))
+         )
+    )
 )
-)
+(print (somepred #'numberp '(a 1 b)))
+; YES
 ```
 №7 Определите фильтр (УДАЛИТЬ-ЕСЛИ-НЕ пред список), удаляющий из списка список все элементы, которые не обладают свойством, наличие которого проверяет предикат пред
 ``` Lisp
